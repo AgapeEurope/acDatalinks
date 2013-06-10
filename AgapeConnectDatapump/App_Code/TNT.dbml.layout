@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TNT">
+  <DataContextMoniker Name="/TNTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="d1a4789a-1ade-4c95-aaf1-954aa3ad6184" absoluteBounds="7.75, 1.625, 2, 2.5401025390625">
+      <DataClassMoniker Name="/TNTDataContext/DataPumpScannerSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e383937-952e-4688-8b78-b10b30f8643a" absoluteBounds="7.765, 2.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9711eddd-0482-41b4-9ad0-7491171fd04a" absoluteBounds="0.75, 1, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/TNTDataContext/WebUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50a20d25-55be-4363-baf1-a076007b1232" absoluteBounds="0.765, 1.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ac63e54-7084-4207-9895-480b7905391f" absoluteBounds="3.5, 1.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TNTDataContext/WebUserProfile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9349fd3d-1817-46e1-b1b5-16da91f69126" absoluteBounds="3.515, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.79890055338542); (3.5 : 2.79890055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TNTDataContext/WebUser/WebUser_WebUserProfile" />
+      <nodes>
+        <classShapeMoniker Id="9711eddd-0482-41b4-9ad0-7491171fd04a" />
+        <classShapeMoniker Id="5ac63e54-7084-4207-9895-480b7905391f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a053d608-5bd3-4ab5-8e2d-237a7db73a8d" absoluteBounds="5.875, 2.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/TNTDataContext/WebUserProfileFinancialAccount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="61d376e6-a3eb-48d5-b259-5a390c460e5d" absoluteBounds="5.89, 3.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 3.42390055338542); (5.875 : 3.42390055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TNTDataContext/WebUserProfile/WebUserProfile_WebUserProfileFinancialAccount" />
+      <nodes>
+        <classShapeMoniker Id="5ac63e54-7084-4207-9895-480b7905391f" />
+        <classShapeMoniker Id="a053d608-5bd3-4ab5-8e2d-237a7db73a8d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="55a02da0-1bd8-449b-b56e-9f142ba182dd" absoluteBounds="5, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TNTDataContext/Property" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e5bc64dd-4452-4351-9734-21fa11cf8037" absoluteBounds="5.015, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

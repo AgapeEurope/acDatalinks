@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsDataDirty">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsDataDirtyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsDataDirtyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetupDataLink">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="config" type="tns:SetupInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="ccs" type="tns:ArrayOfACUnit" />
+            <s:element minOccurs="0" maxOccurs="1" name="accs" type="tns:ArrayOfACUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SetupInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dsConnectionString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="solConnectionString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="urlAgapeConnect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="urlDataserverPortal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvSuffix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvPrefix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfACUnit">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ACUnit" type="tns:ACUnit" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ACUnit">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetupDataLinkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RequestUpdate">
+        <s:complexType />
+      </s:element>
+      <s:element name="RequestUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestUpdateResult" type="tns:DownloadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DownloadResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebUsers" type="tns:ArrayOfWebUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rmbs" type="tns:ArrayOfRmb" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcctsReceivable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcctsPayable" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWebUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WebUser" type="tns:WebUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WebUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GCXID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GCXUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalAccounts" type="tns:ArrayOfWebProfileAccount" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamAccounts" type="tns:ArrayOfWebProfileAccount" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentAccounts" type="tns:ArrayOfWebProfileAccount" />
+          <s:element minOccurs="0" maxOccurs="1" name="OtherAccounts" type="tns:ArrayOfWebProfileAccount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWebProfileAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WebProfileAccount" type="tns:WebProfileAccount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WebProfileAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CostCenter" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRmb">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Rmb" type="tns:Rmb" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Rmb">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RmbNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserInitials" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StaffName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalCostCenter" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApproverName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountsName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubmittedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApprovedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Period" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplierCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AdvanceRequest" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Department" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lines" type="tns:ArrayOfRmbLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRmbLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RmbLine" type="tns:RmbLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RmbLine">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RmbLineNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RmbNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CostCenter" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GrossAmount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Taxable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VATRate" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="VATCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Receipt" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReceiptNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mileage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MileageRate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AnalysisCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Department" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VAT" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestUpdateWithAccountRefresh">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ccs" type="tns:ArrayOfACUnit" />
+            <s:element minOccurs="0" maxOccurs="1" name="accs" type="tns:ArrayOfACUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestUpdateWithAccountRefreshResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestUpdateWithAccountRefreshResult" type="tns:DownloadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsDataDirtySoapIn">
+    <wsdl:part name="parameters" element="tns:IsDataDirty" />
+  </wsdl:message>
+  <wsdl:message name="IsDataDirtySoapOut">
+    <wsdl:part name="parameters" element="tns:IsDataDirtyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetupDataLinkSoapIn">
+    <wsdl:part name="parameters" element="tns:SetupDataLink" />
+  </wsdl:message>
+  <wsdl:message name="SetupDataLinkSoapOut">
+    <wsdl:part name="parameters" element="tns:SetupDataLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestUpdate" />
+  </wsdl:message>
+  <wsdl:message name="RequestUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestUpdateWithAccountRefreshSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestUpdateWithAccountRefresh" />
+  </wsdl:message>
+  <wsdl:message name="RequestUpdateWithAccountRefreshSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestUpdateWithAccountRefreshResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DatatSyncSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDataDirty">
+      <wsdl:input message="tns:IsDataDirtySoapIn" />
+      <wsdl:output message="tns:IsDataDirtySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetupDataLink">
+      <wsdl:input message="tns:SetupDataLinkSoapIn" />
+      <wsdl:output message="tns:SetupDataLinkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdate">
+      <wsdl:input message="tns:RequestUpdateSoapIn" />
+      <wsdl:output message="tns:RequestUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdateWithAccountRefresh">
+      <wsdl:input message="tns:RequestUpdateWithAccountRefreshSoapIn" />
+      <wsdl:output message="tns:RequestUpdateWithAccountRefreshSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DatatSyncSoap" type="tns:DatatSyncSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDataDirty">
+      <soap:operation soapAction="http://tempuri.org/IsDataDirty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetupDataLink">
+      <soap:operation soapAction="http://tempuri.org/SetupDataLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdate">
+      <soap:operation soapAction="http://tempuri.org/RequestUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdateWithAccountRefresh">
+      <soap:operation soapAction="http://tempuri.org/RequestUpdateWithAccountRefresh" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DatatSyncSoap12" type="tns:DatatSyncSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDataDirty">
+      <soap12:operation soapAction="http://tempuri.org/IsDataDirty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetupDataLink">
+      <soap12:operation soapAction="http://tempuri.org/SetupDataLink" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdate">
+      <soap12:operation soapAction="http://tempuri.org/RequestUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdateWithAccountRefresh">
+      <soap12:operation soapAction="http://tempuri.org/RequestUpdateWithAccountRefresh" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DatatSync">
+    <wsdl:port name="DatatSyncSoap" binding="tns:DatatSyncSoap">
+      <soap:address location="http://myagape.org.uk/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DatatSyncSoap12" binding="tns:DatatSyncSoap12">
+      <soap12:address location="http://myagape.org.uk/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

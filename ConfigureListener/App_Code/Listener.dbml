@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="acDatalinks" EntityNamespace="Listener" Class="ListenerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.WebUsers" Member="WebUsers">
+    <Type Name="WebUser">
+      <Column Name="WebUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="DefaultRegistrationCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WebUserCostCenter" Member="WebUserCostCenters">
+    <Type Name="WebUserCostCenter">
+      <Column Name="WebUserCostCenterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProfileCode" Type="System.String" DbType="NVarChar(18) NOT NULL" CanBeNull="false" />
+      <Column Name="ProfileDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CostCenterCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Datalinks" Member="Datalinks">
+    <Type Name="Datalink">
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="dsConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="solConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="webURL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="webPassword" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AdvanceSuffix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AdvancePrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CurrencySymbol" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastSync" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Error" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CostCenterCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AccountCodeCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="tntWebPortal" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WebUserFinancialCategories" Member="WebUserFinancialCategories">
+    <Type Name="WebUserFinancialCategory">
+      <Column Name="FinCatId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="StaffProfileCode" Type="System.String" DbType="NVarChar(18)" CanBeNull="true" />
+      <Column Name="StaffProfileDesc" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WebUserDesignations" Member="WebUserDesignations">
+    <Type Name="WebUserDesignation">
+      <Column Name="WebUserDesignationId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DesignationCode" Type="System.String" DbType="NVarChar(18)" CanBeNull="true" />
+      <Column Name="ProfileCode" Type="System.String" DbType="NVarChar(18)" CanBeNull="true" />
+      <Column Name="ProfileDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Settings" Member="Settings">
+    <Type Name="Setting">
+      <Column Name="GlobalSettingsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="osVersion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="tntPath" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="tntVersion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sqlVersion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PollDelayInSeconds" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Spare4" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Spare5" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

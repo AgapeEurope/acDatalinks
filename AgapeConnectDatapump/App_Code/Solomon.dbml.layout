@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 20.375" name="Solomon">
+  <DataContextMoniker Name="/SolomonDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8b9b5492-3a67-4d5b-83c3-5380033480bb" absoluteBounds="7.125, 1, 2, 9.0783512369791648">
+      <DataClassMoniker Name="/SolomonDataContext/Account" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0176fb8b-209a-4619-9c9c-bb14c54a7298" absoluteBounds="7.14, 1.46, 1.9700000000000002, 8.5183512369791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="267e6a12-07bf-442e-bacb-b892cca6fd4c" absoluteBounds="4.875, 0.875, 2, 14.462791341145833">
+      <DataClassMoniker Name="/SolomonDataContext/Batch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9bc01eb2-face-4aa1-a805-0b96e8c5a9ca" absoluteBounds="4.89, 1.335, 1.9700000000000002, 13.902791341145832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b5595ce-05d1-42be-9964-e5ebf56be26d" absoluteBounds="2.625, 0.75, 2, 15.616599934895834">
+      <DataClassMoniker Name="/SolomonDataContext/GLTran" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b156671-92c8-4ad4-b73a-003818bd996d" absoluteBounds="2.64, 1.21, 1.9700000000000002, 15.056599934895832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3625e584-57ca-4aa2-8243-c82a34e31e8e" absoluteBounds="6.125, 0.5, 2, 6.9630354817708326">
+      <DataClassMoniker Name="/SolomonDataContext/SubAcct" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1afb519f-f648-45a4-85da-a071c407c25b" absoluteBounds="6.14, 0.96, 1.9700000000000002, 6.403035481770833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6101e12-16f7-444f-8fbd-34708930ba2a" absoluteBounds="0.5, 0.5, 2, 19.654930013020834">
+      <DataClassMoniker Name="/SolomonDataContext/GLSetup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ed8a8497-091e-44de-a10b-bb482d614291" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 19.094930013020832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

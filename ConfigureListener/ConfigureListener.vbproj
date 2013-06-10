@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{67EEB038-B5F4-469C-BDB9-8DF23640DB38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ConfigureListener</RootNamespace>
+    <AssemblyName>ConfigureListener</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ConfigureListener.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ConfigureListener.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Data.ConnectionUI, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\Microsoft.Data.ConnectionUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.ConnectionUI.Dialog, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\Listener.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Listener.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.vb" />
+    <Compile Include="DatabaseExists.Designer.vb">
+      <DependentUpon>DatabaseExists.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseExists.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstallerConfig.Designer.vb">
+      <DependentUpon>InstallerConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InstallerConfig.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.vb" />
+    <Compile Include="SQLConnectionDialog.Designer.vb">
+      <DependentUpon>SQLConnectionDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SQLConnectionDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Web References\dynamicAgapeConnect\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DatabaseExists.resx">
+      <DependentUpon>DatabaseExists.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App_Code\Listener.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Listener.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Code\Listener.dbml.layout">
+      <DependentUpon>Listener.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQLConnectionDialog.resx">
+      <DependentUpon>SQLConnectionDialog.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Web References\dynamicAgapeConnect\DatatSync.wsdl" />
+    <None Include="Web References\dynamicAgapeConnect\DownloadResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\dynamicAgapeConnect\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\dynamicAgapeConnect\</RelPath>
+      <UpdateFromURL>http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ConfigureListener_dynamicAgapeConnect_DatatSync</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\dynamicAgapeConnect\DatatSync.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

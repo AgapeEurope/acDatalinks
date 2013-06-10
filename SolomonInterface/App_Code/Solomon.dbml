@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TEST1an3anMAT" Class="SolomonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WIN-IJASUCJVGUJ\SQLEXPRESS;Initial Catalog=TEST1an3anMAT;Persist Security Info=True;User ID=remoteLogin" SettingsObjectName="SolomonInterface.My.MySettings" SettingsPropertyName="TEST1an3anMATConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AcctType" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Acct_Cat" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Acct_Cat_SW" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ConsolAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryId" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Descr" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Employ_Sw" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RatioGrp" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SummPost" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitofMeas" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Units_SW" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidateID" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Batch" Member="Batches">
+    <Type Name="Batch">
+      <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AutoRev" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AutoRevCopy" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="BalanceType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BankAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BankSub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseCuryID" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="BatNbr" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BatType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="clearamt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Cleared" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CpnyID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CrTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CtrlTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryCrTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryCtrlTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryDepositAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryDrTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryEffDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CuryId" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryMultDiv" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryRateType" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Cycle" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DateClr" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateEnt" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DepositAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Descr" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DrTot" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EditScrnNbr" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="GLPostOpt" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="JrnlType" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="LedgerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Module" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NbrCycle" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrigBatNbr" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OrigCpnyID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OrigScrnNbr" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="PerEnt" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="PerPost" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Rlsed" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Sub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GLTran" Member="GLTrans">
+    <Type Name="GLTran">
+      <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AppliedDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BalanceType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseCuryID" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="BatNbr" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CpnyID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CrAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryCrAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryDrAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryEffDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CuryId" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryMultDiv" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CuryRateType" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="DrAmt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ExtRefNbr" Type="System.String" DbType="Char(15) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscYr" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="IC_Distribution" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="JrnlType" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Labor_Class_Cd" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="LedgerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LineId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LineNbr" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LineRef" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Module" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrigAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OrigBatNbr" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OrigCpnyID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OrigSub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="PC_Flag" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="PC_ID" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PC_Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="PerEnt" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="PerPost" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Posted" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="RefNbr" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RevEntryOption" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Rlsed" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Sub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.String" DbType="Char(32) NOT NULL" CanBeNull="false" />
+      <Column Name="TranDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TranDesc" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TranType" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Units" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubAcct" Member="SubAccts">
+    <Type Name="SubAcct">
+      <Column Name="Active" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ConsolSub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Descr" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Sub" Type="System.String" DbType="Char(24) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GLSetup" Member="GLSetups">
+    <Type Name="GLSetup">
+      <Column Name="Addr1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Addr2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AutoBatRpt" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AutoPost" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="AutoRef" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="AutoRevOpt" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BaseCuryId" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="BegFiscalYr" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetLedgerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSpreadDir" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSpreadType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg00" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg01" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg02" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg03" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg04" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg05" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg06" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetSubSeg07" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetYear" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Central_Cash_Cntl" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ChngNbrPer" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="COAOrder" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CpnyId" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CpnyName" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EditInit" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="EmplId" Type="System.String" DbType="Char(12) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd00" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd01" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd02" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd03" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd04" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd05" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd06" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd07" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd08" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd09" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd10" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd11" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscalPerEnd12" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Init" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="LastBatNbr" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LastClosePerNbr" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="LedgerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Master_Fed_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MCActive" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="MCuryBatRpt" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Mult_Cpny_Db" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="NbrPer" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PerNbr" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="PerRetHist" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="PerRetModTran" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="PerRetTran" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PSC" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="RetEarnAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SetupId" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctSeg" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SummPostYCntr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateCA" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidateAcctSub" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ValidateAtPosting" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="YtdNetIncAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ZCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Zp" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vs_AcctSub" Member="vs_AcctSubs">
+    <Type Name="vs_AcctSub">
+      <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Active" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CpnyID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Descr" Type="System.String" DbType="Char(60)" CanBeNull="true" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Sub" Type="System.String" DbType="Char(24) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="User2" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="User6" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vr_01620_AcctHist" Member="vr_01620_AcctHists">
+    <Type Name="vr_01620_AcctHist">
+      <Column Name="AcctHistAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistBalanceType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistCuryID" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistCpnyID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistFiscYr" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistLedgerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistSub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AcctHistUser8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AccountAcctType" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountAcctCat" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountActive" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AccountClassID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountConsolAcct" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountDescr" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountRatioGrp" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AccountUser8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctActive" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctConSolSub" Type="System.String" DbType="Char(24) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctDescr" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SubAcctUser8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AcctTypeOrder" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PeriodPost" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Mon" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="StartingBalance" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="StartingBalance1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PeriodActivity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EndingBalance" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
