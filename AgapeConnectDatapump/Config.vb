@@ -31,7 +31,7 @@ Public Class Config
 
 
         Me.DatalinksTableAdapter.Fill(Me.AcDatalinks.Datalinks)
-        RefreshTnT()
+
         GetServiceStatus()
         GetBaseConnection()
         Using d As New ListenerDataContext
@@ -108,10 +108,10 @@ Public Class Config
 
     End Sub
 
-    Private Sub btnEditDataserver_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles btnEditDataserver.LinkClicked
+    Private Sub btnEditDataserver_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles btnEditDonorwise.LinkClicked
         'Edit Dataserver connection
         Dim OldState As Boolean = False
-        Dim dsConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dsCon", True).First, Label).Text
+        Dim dwConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dwCon", True).First, Label).Text
 
 
         Using d As New ListenerDataContext
@@ -127,31 +127,29 @@ Public Class Config
                 Using dsEdit As New SQLConnectionDialog()
 
 
-                    dsEdit.ConnectionString = dsConnString
-                    dsEdit.dbMode = SQLConnectionDialog.TNT_MODE
+                    dsEdit.ConnectionString = dwConnString
+                    dsEdit.dbMode = SQLConnectionDialog.DW_MODE
 
 
-                    dsEdit.Text = "TnT Dataserver - SQL Connection"
+                    dsEdit.Text = "Donorwise - SQL Connection"
                     Dim rslt = dsEdit.ShowDialog()
                     q.First.Active = OldState
-
                     If rslt = Windows.Forms.DialogResult.OK Then
 
-                        q.First.dsConnectionString = dsEdit.ConnectionString
-                        q.First.CostCenterCount = 0
-                        q.First.AccountCodeCount = 0
+                        q.First.dwConnectionString = dsEdit.ConnectionString
+                       
                         d.SubmitChanges()
-                        SolomonInterface.PollWebsite.SaveTnTSettings(dsEdit.ConnectionString, d.Connection.ConnectionString, Did)
+
                     Else
                         d.SubmitChanges()
                     End If
+                    
                 End Using
                 Me.Enabled = True
                 Me.DatalinksTableAdapter.Fill(Me.AcDatalinks.Datalinks)
             End If
         End Using
     End Sub
-
 
     Private Sub LinkLabel2_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         'Edit Solomon Connection String
@@ -173,7 +171,9 @@ Public Class Config
 
                     If rslt = Windows.Forms.DialogResult.OK Then
 
-
+                        q.First.CostCenterCount = 0
+                        q.First.AccountCodeCount = 0
+                        d.SubmitChanges()
 
                         q.First.solConnectionString = dsEdit.ConnectionString
 
@@ -182,12 +182,7 @@ Public Class Config
                     d.SubmitChanges()
 
 
-                    If rslt = Windows.Forms.DialogResult.OK And Not String.IsNullOrEmpty(q.First.dsConnectionString) Then
-                        If q.First.dsConnectionString.Contains("Catalog") Then
-                            SolomonInterface.PollWebsite.SaveTnTSettings(q.First.dsConnectionString, d.Connection.ConnectionString, Did)
-
-                        End If
-                    End If
+                   
                    
 
 
@@ -248,9 +243,9 @@ Public Class Config
 
             Dim webURL = CType(DataRepeater1.CurrentItem.Controls.Find("webURL", True).First, Label).Text
             Dim solConnString = CType(DataRepeater1.CurrentItem.Controls.Find("solCon", True).First, Label).Text
-            Dim dsConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dsCon", True).First, Label).Text
+            '  Dim dsConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dsCon", True).First, Label).Text
 
-            'Dim d As New ListenerDataContext
+
             Using d As New ListenerDataContext
 
                 Dim Did = CType(DataRepeater1.CurrentItem.Controls.Find("lblDatalinkId", True).First, Label).Text
@@ -332,7 +327,7 @@ Public Class Config
             Dim q = From c In d.Datalinks Where c.DatalinkId = CInt(but.Tag)
 
             If q.Count > 0 Then
-                If q.First.dsConnectionString.Length > 0 And q.First.solConnectionString.Length > 0 And q.First.webURL.Length > 0 And q.First.webPassword.Length > 0 Then
+                If q.First.solConnectionString.Length > 0 And q.First.webURL.Length > 0 And q.First.webPassword.Length > 0 Then
 
 
                     q.First.Active = Not q.First.Active
@@ -372,7 +367,7 @@ Public Class Config
                 Dim insert As New Listener.Datalink
                 insert.Active = False
                 insert.Error = False
-                insert.dsConnectionString = _baseConnectionString
+                insert.dsConnectionString = ""
                 insert.solConnectionString = insert.dsConnectionString
                 insert.Name = nd.DataLinkName
                 d.Datalinks.InsertOnSubmit(insert)
@@ -450,45 +445,16 @@ Public Class Config
         End Using
     End Sub
 
-    Private Sub RefreshTnT()
-        Using d As New ListenerDataContext
-
-            Dim tntPath As String = GetTnTPath()
-            Dim tntVersion As String = GetTntVersion(tntPath)
-            If d.Settings.Count > 0 Then
-                If Not String.IsNullOrEmpty(d.Settings.First.tntPath) Then
-                    If System.IO.File.Exists(tntPath & "TntMPD.DataServer.exe") Then
-                        d.Settings.First.tntVersion = GetTntVersion(d.Settings.First.tntPath)
-                        d.SubmitChanges()
-                        Return
-                    End If
-                End If
-                d.Settings.First.tntPath = tntPath
-                d.Settings.First.tntVersion = tntVersion
-
-            Else
-                Dim insert As New Listener.Setting
-                insert.tntPath = tntPath
-                insert.tntVersion = tntVersion
-                insert.PollDelayInSeconds = 300
-                d.Settings.InsertOnSubmit(insert)
-            End If
-            d.SubmitChanges()
-
-
-        End Using
-    End Sub
 
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        RefreshTnT()
+
         Using s As New Settings()
             Using d As New ListenerDataContext
 
                 If d.Settings.Count > 0 Then
                     s.tbACDatalinksVersion.Text = System.Reflection.Assembly.GetExecutingAssembly.GetName().Version.ToString
-                    s.tbTntPath.Text = d.Settings.First.tntPath
-                    s.tbTntVersion.Text = d.Settings.First.tntVersion
+                   
                     s.tbPollDelay.Value = d.Settings.First.PollDelayInSeconds
 
                 End If
@@ -498,14 +464,12 @@ Public Class Config
             If rtn = Windows.Forms.DialogResult.OK Then
                 Using dnew As New ListenerDataContext
                     If dnew.Settings.Count > 0 Then
-                        dnew.Settings.First.tntPath = s.tbTntPath.Text
-                        dnew.Settings.First.tntVersion = s.tbTntPath.Text
+                      
                         dnew.Settings.First.PollDelayInSeconds = s.tbPollDelay.Value
 
                     Else
                         Dim insert As New Listener.Setting
-                        insert.tntPath = s.tbTntPath.Text
-                        insert.tntVersion = s.tbTntPath.Text
+                     
                         insert.PollDelayInSeconds = s.tbPollDelay.Value
                     End If
                     dnew.SubmitChanges()
@@ -517,55 +481,5 @@ Public Class Config
 
     End Sub
 
-    Private Function GetTnTPath() As String
-        'Very cautious and thorough route to the tnt registry entry...
-        'but the registry is scary, and we have to handle the fact
-        'that tnt registry values install in different locations
-        'on 32bit and 64bit systems
-        Try
-            Dim tntPath As String = ""
-            Dim Root = My.Computer.Registry.LocalMachine
-            If Root.GetSubKeyNames.Contains("SOFTWARE") Then
-                Dim Software = Root.OpenSubKey("SOFTWARE")
-                Dim tntWare As Microsoft.Win32.RegistryKey
-                If Software.GetSubKeyNames.Contains("TntWare") Then
-                    tntWare = Software.OpenSubKey("TntWare")
-                ElseIf Software.GetSubKeyNames.Contains("Wow6432Node") Then
-                    Dim Wow = Software.OpenSubKey("Wow6432Node")
-                    If Wow.GetSubKeyNames.Contains("TntWare") Then
-                        tntWare = Wow.OpenSubKey("TntWare")
-                    Else
-                        Return ""
-                    End If
-                Else
-                    Return ""
-                End If
-                If tntWare.GetSubKeyNames.Contains("TntMPD.DataServer") Then
-                    Dim dataserver = tntWare.OpenSubKey("TntMPD.DataServer")
-                    If dataserver.GetValueNames.Contains("InstallPath") Then
-                        Return CStr(dataserver.GetValue("InstallPath"))
-                    End If
-                End If
-            End If
-        Catch ex As Exception
-            Return ""
-        End Try
-        Return ""
-    End Function
-    Private Function GetTntVersion(ByVal tntPath As String) As String
-        Try
-            Dim tntVersion As String = ""
-            If tntPath <> "" Then
-                If System.IO.File.Exists(tntPath & "TntMPD.DataServer.exe") Then
-                    Dim tntVersionInfo = FileVersionInfo.GetVersionInfo(tntPath & "TntMPD.DataServer.exe")
-                    If Not tntVersionInfo Is Nothing Then
-                        tntVersion = tntVersionInfo.FileVersion
-                    End If
-                End If
-            End If
-            Return tntVersion
-        Catch ex As Exception
-            Return ""
-        End Try
-    End Function
+    
 End Class

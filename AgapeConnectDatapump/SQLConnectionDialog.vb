@@ -13,7 +13,7 @@ Public Class SQLConnectionDialog
 
     Public Const TNT_MODE = "TNT"
     Public Const SOL_MODE = "SOL"
-
+    Public Const DW_MODE = "DW"
     Private _dbMode As String
     Public Property dbMode() As String
         Get

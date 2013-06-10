@@ -80,11 +80,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="App_Code\TNT.designer.vb">
-      <DependentUpon>TNT.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Message.Designer.vb">
       <DependentUpon>Message.vb</DependentUpon>
     </Compile>
@@ -116,9 +111,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="App_Code\app.config" />
-    <None Include="App_Code\TNT.dbml.layout">
-      <DependentUpon>TNT.dbml</DependentUpon>
-    </None>
     <None Include="App_Code\Solomon.dbml.layout">
       <DependentUpon>Solomon.dbml</DependentUpon>
     </None>
@@ -137,11 +129,6 @@
     <None Include="App_Code\Solomon.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Solomon.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="App_Code\TNT.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>TNT.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Web References\dynamicAgapeConnect\Datatsync.wsdl" />

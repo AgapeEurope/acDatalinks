@@ -39,10 +39,10 @@ Partial Class Config
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.btnEditDataserver = New System.Windows.Forms.LinkLabel()
+        Me.btnEditDonorwise = New System.Windows.Forms.LinkLabel()
         Me.webURL = New System.Windows.Forms.Label()
         Me.solCon = New System.Windows.Forms.Label()
-        Me.dsCon = New System.Windows.Forms.Label()
+        Me.dwCon = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -123,10 +123,10 @@ Partial Class Config
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.lblStatus)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.LinkLabel3)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.LinkLabel2)
-        Me.DataRepeater1.ItemTemplate.Controls.Add(Me.btnEditDataserver)
+        Me.DataRepeater1.ItemTemplate.Controls.Add(Me.btnEditDonorwise)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.webURL)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.solCon)
-        Me.DataRepeater1.ItemTemplate.Controls.Add(Me.dsCon)
+        Me.DataRepeater1.ItemTemplate.Controls.Add(Me.dwCon)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.Label4)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.Label3)
         Me.DataRepeater1.ItemTemplate.Controls.Add(Me.Label2)
@@ -249,15 +249,15 @@ Partial Class Config
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Edit"
         '
-        'btnEditDataserver
+        'btnEditDonorwise
         '
-        Me.btnEditDataserver.AutoSize = True
-        Me.btnEditDataserver.Location = New System.Drawing.Point(661, 26)
-        Me.btnEditDataserver.Name = "btnEditDataserver"
-        Me.btnEditDataserver.Size = New System.Drawing.Size(25, 13)
-        Me.btnEditDataserver.TabIndex = 17
-        Me.btnEditDataserver.TabStop = True
-        Me.btnEditDataserver.Text = "Edit"
+        Me.btnEditDonorwise.AutoSize = True
+        Me.btnEditDonorwise.Location = New System.Drawing.Point(661, 26)
+        Me.btnEditDonorwise.Name = "btnEditDonorwise"
+        Me.btnEditDonorwise.Size = New System.Drawing.Size(25, 13)
+        Me.btnEditDonorwise.TabIndex = 17
+        Me.btnEditDonorwise.TabStop = True
+        Me.btnEditDonorwise.Text = "Edit"
         '
         'webURL
         '
@@ -277,14 +277,14 @@ Partial Class Config
         Me.solCon.TabIndex = 15
         Me.solCon.Text = "Label6"
         '
-        'dsCon
+        'dwCon
         '
-        Me.dsCon.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DatalinksBindingSource, "dsConnectionString", True))
-        Me.dsCon.Location = New System.Drawing.Point(157, 26)
-        Me.dsCon.Name = "dsCon"
-        Me.dsCon.Size = New System.Drawing.Size(500, 15)
-        Me.dsCon.TabIndex = 14
-        Me.dsCon.Text = "Label5"
+        Me.dwCon.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DatalinksBindingSource, "dsConnectionString", True))
+        Me.dwCon.Location = New System.Drawing.Point(157, 26)
+        Me.dwCon.Name = "dwCon"
+        Me.dwCon.Size = New System.Drawing.Size(500, 15)
+        Me.dwCon.TabIndex = 14
+        Me.dwCon.Text = "Label5"
         '
         'Label4
         '
@@ -312,9 +312,9 @@ Partial Class Config
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(77, 25)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 13)
+        Me.Label2.Size = New System.Drawing.Size(70, 13)
         Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Dataserver:"
+        Me.Label2.Text = "Donorwise:"
         '
         'Label1
         '
@@ -435,10 +435,10 @@ Partial Class Config
     Friend WithEvents TableAdapterManager As AgapeConnectDatapump.acDatalinksTableAdapters.TableAdapterManager
     Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
-    Friend WithEvents btnEditDataserver As System.Windows.Forms.LinkLabel
+    Friend WithEvents btnEditDonorwise As System.Windows.Forms.LinkLabel
     Friend WithEvents webURL As System.Windows.Forms.Label
     Friend WithEvents solCon As System.Windows.Forms.Label
-    Friend WithEvents dsCon As System.Windows.Forms.Label
+    Friend WithEvents dwCon As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label

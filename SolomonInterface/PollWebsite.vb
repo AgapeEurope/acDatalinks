@@ -9,7 +9,7 @@ Public Class PollWebsite
     Private _Password As String = ""
     Private WebS As New dynamicAgapeConnect.DatatSync
     Private d As Listener2DataContext
-    Private dt As TNTDataContext
+
     Private ds As SolomonDataContext
     Private dl As New Listener2.Datalink
     Private si As New dynamicAgapeConnect.SetupInfo
@@ -46,7 +46,7 @@ Public Class PollWebsite
             WebS.Url = dl.webURL
 
             'CheckForNewAccounts
-            dt = New TNTDataContext(dl.dsConnectionString)
+
             ds = New SolomonDataContext(dl.solConnectionString)
             _Password = AgapeEncrypt.Decrypt(dl.webPassword)
             Status = "OK"
@@ -60,7 +60,7 @@ Public Class PollWebsite
 #Region "Public Functions"
     Public Sub CleanUp()
         ds.Dispose()
-        dt.Dispose()
+
         d.Dispose()
         WebS.Dispose()
     End Sub
@@ -224,16 +224,7 @@ Public Class PollWebsite
                 Return rtn
             ElseIf (update.Status = "New Data") Then
                 ' EventLog1.WriteEntry("AgapeConnect service found new data.")
-                If Not update.WebUsers Is Nothing Then
-                    Try
-                        ProcessTNTWebUsers(update.WebUsers)
-
-                    Catch ex As Exception
-                        uResp.TntStatus.Status = "Error"
-                        uResp.TntStatus.Message = ex.Message
-                    End Try
-
-                End If
+                
                 If Not update.Rmbs Is Nothing Then
                     ProcessRmbs(update.Rmbs, update.Advances, update.AcctsReceivable, update.AcctsPayable, update.TaxableAcctsReceivable, update.ControlAccount, uResp)
                 End If
@@ -267,216 +258,11 @@ Public Class PollWebsite
 
 
 
-    Shared Sub SaveTnTSettings(ByVal dsConnString As String, ByVal acConString As String, ByVal DatalinkId As Integer)
-        Try
-
-
-            Using dAC1 As New Listener2DataContext(acConString)
-
-
-                Dim dl1 = From c In dAC1.Datalinks Where c.DatalinkId = DatalinkId
-
-
-                If dl1.Count > 0 Then
-
-                    Using dd = New TNTDataContext(dsConnString)
-                        dl1.First.tntWebPortal = (From c In dd.Properties Where c.PropName = "WebAppUrl" Select c.PropValue).First
-                        dl1.First.CurrencySymbol = (From c In dd.Properties Where c.PropName = "DefaultCurrencyCode" Select c.PropValue).First
-                        Dim temp = (From c In dd.DataPumpScannerSources Where c.Name.Contains("Solomon") Or c.TemplateXML.Contains("Solomon") Select c.PropertiesXML).First
-
-                        Dim doc As New XmlDocument()
-
-                        doc.LoadXml(temp)
-
-                        Dim pls = doc.SelectSingleNode("/Data_Source/Placeholder_List")
-
-                        For Each child As XmlNode In pls.ChildNodes
-
-                            If child.OuterXml.Contains("$FIN_ACCT_ADV_SUFFIX$") Then
-                                dl1.First.AdvanceSuffix = child.InnerText
-
-                            ElseIf child.OuterXml.Contains("$ADVANCE_ACCT_PREFIX$") Then
-                                dl1.First.AdvancePrefix = child.InnerText
-                            ElseIf child.OuterXml.Contains("$COMPANY_ID$") Then
-                                dl1.First.CompanyID = child.InnerText
-                            ElseIf child.OuterXml.Contains("$APP_DATABASE$") Then
-                                If Not String.IsNullOrEmpty(dl1.First.solConnectionString) Then
-                                    If dl1.First.solConnectionString.Contains("Catalog") Then
-                                        Dim TntSol As String = child.InnerText
-                                        If Not dl1.First.solConnectionString.Contains(TntSol) Then
-                                            MsgBox("Warning: TnT appears to be connected to a different Solomon(Dynamics) Database than you specified in the datalink. Please check the datalink settings in ACDatalinks Manager.", MsgBoxStyle.Exclamation)
-
-                                        End If
-                                    End If
-                                End If
-                            End If
-                        Next
-
-                        dAC1.SubmitChanges()
-                    End Using
-                End If
-            End Using
-        Catch ex As Exception
-            ' MsgBox("Error: " & ex.Message)
-        End Try
-    End Sub
+    
 #End Region
 
 #Region "tntDataserver Interface"
-    Private Sub ProcessTNTWebUsers(ByVal WebUsers As dynamicAgapeConnect.WebUser())
-        'EventLog1.WriteEntry("Processing TNT Data")
-
-        Dim dAC As New Listener2DataContext(d.Connection.ConnectionString)
-
-        dAC.WebUserCostCenters.DeleteAllOnSubmit(From c In dAC.WebUserCostCenters Where c.DatalinkId = dl.DatalinkId)
-        dAC.WebUsers.DeleteAllOnSubmit(From c In dAC.WebUsers Where c.DatalinkId = dl.DatalinkId)
-        dAC.WebUserFinancialCategories.DeleteAllOnSubmit(From c In dAC.WebUserFinancialCategories Where c.DatalinkId = dl.DatalinkId)
-        dAC.WebUserDesignations.DeleteAllOnSubmit(From c In dAC.WebUserDesignations Where c.DatalinkId = dl.DatalinkId)
-
-        dAC.SubmitChanges()
-
-        For Each row In WebUsers
-            'Blank the interim tables
-            Try
-
-
-                Dim insert As New Listener2.WebUser
-                insert.UserName = row.Name
-                insert.Email = row.GCXUserName
-                insert.DefaultRegistrationCode = row.GCXUserName
-                insert.DatalinkId = dl.DatalinkId
-                dAC.WebUsers.InsertOnSubmit(insert)
-
-                For Each profile In row.PersonalAccounts
-                    Dim insertCC As New Listener2.WebUserCostCenter
-                    insertCC.CostCenterCode = profile.CostCenter
-                    insertCC.ProfileCode = ""
-                    insertCC.ProfileDescription = "Personal Accounts"
-                    insertCC.UserName = row.Name
-                    insertCC.DatalinkId = dl.DatalinkId
-                    dAC.WebUserCostCenters.InsertOnSubmit(insertCC)
-                    If dl.AdvanceSuffix <> "" Then
-                        Dim insertCC2 As New Listener2.WebUserCostCenter
-                        insertCC2.CostCenterCode = profile.CostCenter & "-" & dl.AdvanceSuffix
-                        insertCC2.ProfileCode = ""
-                        insertCC2.ProfileDescription = "Personal Accounts"
-                        insertCC2.UserName = row.Name
-                        insertCC2.DatalinkId = dl.DatalinkId
-                        dAC.WebUserCostCenters.InsertOnSubmit(insertCC2)
-
-
-                    End If
-                    Dim designations = profile.Designations.Split(";")
-                    For Each desig In designations
-                        Dim theDesig = desig.Trim()
-                        If theDesig.Length > 0 Then
-                            If (From c In dt.Desigs Where c.Code = theDesig).Count = 0 Then
-                                Dim insertD As New Listener2.WebUserDesignation
-                                insertD.DatalinkId = dl.DatalinkId
-                                insertD.ProfileCode = ""
-                                insertD.ProfileDescription = "Personal Accounts"
-                                insertD.DesignationCode = theDesig
-                                insertD.Username = row.Name
-                                dAC.WebUserDesignations.InsertOnSubmit(insertD)
-                            End If
-                        End If
-                    Next
-
-                   
-
-                Next
-                For Each profile In row.DepartmentAccounts
-                    Dim insertCC As New Listener2.WebUserCostCenter
-                    insertCC.CostCenterCode = profile.CostCenter
-                    insertCC.ProfileCode = 1
-                    insertCC.ProfileDescription = "Department Accounts"
-                    insertCC.UserName = row.Name
-                    insertCC.DatalinkId = dl.DatalinkId
-                    dAC.WebUserCostCenters.InsertOnSubmit(insertCC)
-
-                    Dim designations = profile.Designations.Split(";")
-                    For Each desig In designations
-                        Dim theDesig = desig.Trim()
-                        If theDesig.Length > 0 Then
-                            If (From c In dt.Desigs Where c.Code = theDesig).Count = 0 Then
-                                Dim insertD As New Listener2.WebUserDesignation
-                                insertD.DatalinkId = dl.DatalinkId
-                                insertD.ProfileCode = 1
-                                insertD.ProfileDescription = "Department Accounts"
-                                insertD.DesignationCode = theDesig
-                                insertD.Username = row.Name
-                                dAC.WebUserDesignations.InsertOnSubmit(insertD)
-                            End If
-                        End If
-                    Next
-
-                Next
-
-                For Each profile In row.TeamAccounts
-                    Dim insertCC As New Listener2.WebUserCostCenter
-                    insertCC.CostCenterCode = profile.CostCenter
-                    insertCC.ProfileCode = 2
-                    insertCC.ProfileDescription = "Team Accounts"
-                    insertCC.UserName = row.Name
-                    insertCC.DatalinkId = dl.DatalinkId
-                    dAC.WebUserCostCenters.InsertOnSubmit(insertCC)
-                Next
-
-                If row.AccountsUser Then
-                    Dim insertFC As New Listener2.WebUserFinancialCategory
-                    insertFC.Category = ""
-                    insertFC.DatalinkId = dl.DatalinkId
-                    insertFC.StaffProfileCode = 3
-                    insertFC.StaffProfileDesc = "All Accounts"
-                    insertFC.Username = row.Name
-                    dAC.WebUserFinancialCategories.InsertOnSubmit(insertFC)
-                End If
-            Catch ex As Exception
-                'error inserting webuser.
-                dl.ErrorMessage &= "Problem setting up dataserver webprofile for " & row.Name & ". " & ex.Message
-                d.SubmitChanges()
-            End Try
-        Next
-        Try
-            dAC.SubmitChanges()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            Throw
-        End Try
-
-        'Now create the webUsers manually // DISABLED - REPLACED BY TROY'S NEW WEBSERVICES. WEB USERS WILL NO LONGER GO THROUGHT THE PUMP
-
-        'Dim allwebUsers = From c In d.WebUsers Where c.DatalinkId = dl.DatalinkId
-        'For Each row In allwebUsers
-        '    Dim tntWebUsers = From c In dt.WebUsers Where c.Code = row.UserName
-
-        '    If tntWebUsers.Count = 0 Then
-        '        'create a new webuser
-        '        Dim insertWU As New TNT.WebUser
-        '        insertWU.Code = row.UserName
-        '        insertWU.DefaultEmail = row.Email
-        '        insertWU.DefaultEmailPassword = ""
-        '        insertWU.DefaultRegistrationCode = row.DefaultRegistrationCode
-        '        insertWU.Email = row.Email
-        '        insertWU.EmailPassword = ""
-        '        insertWU.IsTranslator = False
-        '        insertWU.RegistrationCode = row.DefaultRegistrationCode
-        '        insertWU.RowGuid = Guid.NewGuid()
-        '        insertWU.ScanCode = ""
-        '        insertWU.SsoCode = ""
-        '        insertWU.SsoEmail = row.DefaultRegistrationCode
-        '        insertWU.WebUserID = dt.WebUsers.Max(Function(x) x.WebUserID) + 1
-        '        dt.WebUsers.InsertOnSubmit(insertWU)
-        '        dt.SubmitChanges()
-        '    End If
-
-        'Next
-
-
-
-        'TriggerTnT()   'DISABLED> TNT WEB USERS NO LONGER GO THROUGH ACDATALINKS (THEY ARE PRROCESSED DIRECTLY USING DATASERVER'S WEB USERS
-        'THERE IS NO POINT IN TRIGGERING TNT AT THIS POINT, AS BATCHES ARE NOT GET POSTED.
-    End Sub
+   
     Function ConvertToSecureString(ByVal str As String)
         Dim password As New Security.SecureString
         For Each c As Char In str.ToCharArray
@@ -484,56 +270,7 @@ Public Class PollWebsite
         Next
         Return password
     End Function
-    Private Sub TriggerTnT()
-        Try
-           
-
-            Dim myProcess As New Process()
-            Dim tntPath = d.Settings.First.tntPath
-            If Not tntPath Is Nothing Then
-                If tntPath <> "" Then
-                    Dim tnt As New ProcessStartInfo()
-                    tnt.WorkingDirectory = tntPath
-                    tnt.CreateNoWindow = True
-
-                    tnt.LoadUserProfile = True
-
-                    tnt.UseShellExecute = False
-
-
-                    Dim ssb As New System.Data.SqlClient.SqlConnectionStringBuilder(dt.Connection.ConnectionString)
-                    tnt.FileName = tntPath & "TntMPD.DataServer.Run.exe"
-                    tnt.Arguments = "/server=" & ssb.DataSource & " /database=" & ssb.InitialCatalog
-                    If ssb.IntegratedSecurity = False Then
-                        tnt.Arguments &= " /login=" & ssb.UserID & " /password=" & ssb.Password & " /autorun"
-                    Else
-
-                        tnt.Arguments &= " /ntauth /autorun"
-                    End If
-
-                    myProcess.StartInfo = tnt
-                    myProcess.Start()
-
-                Else
-                    '   MsgBox("Error2: Couldn't Find Tnt registry key ")
-                    dl.Error = True
-                    dl.ErrorMessage &= "Error2: Couldn't Find Tnt registry key "
-                    d.SubmitChanges()
-                End If
-            Else
-                ' MsgBox("Error1: Couldn't Find Tnt registry key ")
-                dl.Error = True
-                dl.ErrorMessage &= "Error1: Couldn't Find Tnt registry key "
-                d.SubmitChanges()
-            End If
-        Catch ex As Exception
-            'couldn't launch tnt
-            dl.Error = True
-            MsgBox("Error1: Couldn't Launch Tnt: " & ex.Message)
-            dl.ErrorMessage &= "Error: Can't launch tnt: " & ex.Message
-            d.SubmitChanges()
-        End Try
-    End Sub
+   
 
 #End Region
 #Region "Solomon Interface"
@@ -1128,8 +865,6 @@ Public Class PollWebsite
         si.acDatalink_WindowsVersion = My.Computer.Info.OSFullName
 
         If d.Settings.Count > 0 Then
-            si.acDatalink_TNT_InstallPath = d.Settings.First.tntPath
-            si.acDatalink_DataserverVersion = d.Settings.First.tntVersion
             si.acDatalink_PollDelayInSeconds = d.Settings.First.PollDelayInSeconds
         End If
 
