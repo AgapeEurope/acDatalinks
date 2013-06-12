@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="HelloWorld">
@@ -16,13 +16,150 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TestAPBalances">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestAPBalancesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestAPBalancesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAPBalances">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Balances" type="tns:ArrayOfAPBalanceInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAPBalanceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="APBalanceInfo" type="tns:APBalanceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="APBalanceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CostCenter" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpensesPayable" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SpSalaryAdv" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousSalary" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountBalance" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="AdvanceBalance" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAPBalancesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetAPBalancesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuggestedPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuggestedPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSuggestedPaymentResult" type="tns:SPResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SPResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Control" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpensesPayable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayrolPayable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxablePayable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalaryAcc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Format" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuggestedPayments" type="tns:ArrayOfSuggestedPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSuggestedPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SuggestedPayment" type="tns:SuggestedPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SuggestedPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpPayable" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpTaxable" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Salary" type="s:double" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="RequestUpdate">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="pword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Settings" type="tns:SetupInfo" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="SetupInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="urlDataserverPortal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvSuffix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvPrefix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_DatalinkId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_Version" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_DataserverVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_WindowsVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_SQLVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_TNT_InstallPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_acDatalink_Error" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="acDatalink_Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="acDatalink_ComputerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="acDatalink_PollDelayInSeconds" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="currentFiscalPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="changedBudgets" type="tns:ArrayOfAP_Budget_Summary1" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstFiscalMonth" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAP_Budget_Summary1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AP_Budget_Summary1" nillable="true" type="tns:AP_Budget_Summary1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AP_Budget_Summary1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BudgetSummaryId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="P1" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P2" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P3" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P4" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P5" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P6" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P7" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P8" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P9" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P10" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P11" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="P12" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FiscalYear" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Changed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Portalid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Error" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="RequestUpdateResponse">
         <s:complexType>
           <s:sequence>
@@ -37,8 +174,14 @@
           <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="WebUsers" type="tns:ArrayOfWebUser" />
           <s:element minOccurs="0" maxOccurs="1" name="Rmbs" type="tns:ArrayOfRmb" />
+          <s:element minOccurs="0" maxOccurs="1" name="Advances" type="tns:ArrayOfAdv" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChangedBudgets" type="tns:ArrayOfAP_Budget_Summary1" />
           <s:element minOccurs="0" maxOccurs="1" name="AcctsReceivable" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="AcctsPayable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxableAcctsReceivable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ControlAccount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="APIVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VersionStatus" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfWebUser">
@@ -52,6 +195,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="GCXID" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="GCXUserName" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountsUser" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="PersonalAccounts" type="tns:ArrayOfWebProfileAccount" />
           <s:element minOccurs="0" maxOccurs="1" name="TeamAccounts" type="tns:ArrayOfWebProfileAccount" />
           <s:element minOccurs="0" maxOccurs="1" name="DepartmentAccounts" type="tns:ArrayOfWebProfileAccount" />
@@ -67,6 +211,7 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="CostCenter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Designations" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfRmb">
@@ -81,6 +226,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="UserInitials" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="StaffName" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PersonalCostCenter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalAccountCode" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="ApproverName" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="AccountsName" type="s:string" />
@@ -124,6 +270,45 @@
           <s:element minOccurs="1" maxOccurs="1" name="VAT" type="s:boolean" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfAdv">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Adv" type="tns:Adv" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Adv">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AdvanceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocalAdvanceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserInitials" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StaffName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalCostCenter" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApproverName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountsName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubmittedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApprovedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Period" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TestRequestUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestRequestUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestRequestUpdateResult" type="tns:DownloadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateResponses">
         <s:complexType>
           <s:sequence>
@@ -136,6 +321,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="TntStatus" type="tns:StatusDescription" />
           <s:element minOccurs="0" maxOccurs="1" name="Rmbs" type="tns:ArrayOfStatusDescription" />
+          <s:element minOccurs="0" maxOccurs="1" name="Budgets" type="tns:ArrayOfAP_Budget_Summary1" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="StatusDescription">
@@ -143,6 +329,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="RowId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualPeriod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualYear" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchId" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfStatusDescription">
@@ -175,15 +364,6 @@
           <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="SetupInfo">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="urlDataserverPortal" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="AdvSuffix" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="AdvPrefix" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="CompanyId" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="RequestUpdateWithAccountRefreshResponse">
         <s:complexType>
           <s:sequence>
@@ -199,11 +379,35 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="TestAPBalancesSoapIn">
+    <wsdl:part name="parameters" element="tns:TestAPBalances" />
+  </wsdl:message>
+  <wsdl:message name="TestAPBalancesSoapOut">
+    <wsdl:part name="parameters" element="tns:TestAPBalancesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAPBalancesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAPBalances" />
+  </wsdl:message>
+  <wsdl:message name="SetAPBalancesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAPBalancesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSuggestedPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSuggestedPayment" />
+  </wsdl:message>
+  <wsdl:message name="GetSuggestedPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSuggestedPaymentResponse" />
+  </wsdl:message>
   <wsdl:message name="RequestUpdateSoapIn">
     <wsdl:part name="parameters" element="tns:RequestUpdate" />
   </wsdl:message>
   <wsdl:message name="RequestUpdateSoapOut">
     <wsdl:part name="parameters" element="tns:RequestUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestRequestUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:TestRequestUpdate" />
+  </wsdl:message>
+  <wsdl:message name="TestRequestUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:TestRequestUpdateResponse" />
   </wsdl:message>
   <wsdl:message name="UpdateResponsesSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateResponses" />
@@ -222,9 +426,25 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="TestAPBalances">
+      <wsdl:input message="tns:TestAPBalancesSoapIn" />
+      <wsdl:output message="tns:TestAPBalancesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAPBalances">
+      <wsdl:input message="tns:SetAPBalancesSoapIn" />
+      <wsdl:output message="tns:SetAPBalancesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuggestedPayment">
+      <wsdl:input message="tns:GetSuggestedPaymentSoapIn" />
+      <wsdl:output message="tns:GetSuggestedPaymentSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="RequestUpdate">
       <wsdl:input message="tns:RequestUpdateSoapIn" />
       <wsdl:output message="tns:RequestUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestRequestUpdate">
+      <wsdl:input message="tns:TestRequestUpdateSoapIn" />
+      <wsdl:output message="tns:TestRequestUpdateSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateResponses">
       <wsdl:input message="tns:UpdateResponsesSoapIn" />
@@ -246,8 +466,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TestAPBalances">
+      <soap:operation soapAction="http://tempuri.org/TestAPBalances" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAPBalances">
+      <soap:operation soapAction="http://tempuri.org/SetAPBalances" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuggestedPayment">
+      <soap:operation soapAction="http://tempuri.org/GetSuggestedPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RequestUpdate">
       <soap:operation soapAction="http://tempuri.org/RequestUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestRequestUpdate">
+      <soap:operation soapAction="http://tempuri.org/TestRequestUpdate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -285,8 +541,44 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TestAPBalances">
+      <soap12:operation soapAction="http://tempuri.org/TestAPBalances" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAPBalances">
+      <soap12:operation soapAction="http://tempuri.org/SetAPBalances" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuggestedPayment">
+      <soap12:operation soapAction="http://tempuri.org/GetSuggestedPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RequestUpdate">
       <soap12:operation soapAction="http://tempuri.org/RequestUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestRequestUpdate">
+      <soap12:operation soapAction="http://tempuri.org/TestRequestUpdate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -315,10 +607,10 @@
   </wsdl:binding>
   <wsdl:service name="DatatSync">
     <wsdl:port name="DatatSyncSoap" binding="tns:DatatSyncSoap">
-      <soap:address location="http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
+      <soap:address location="http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
     </wsdl:port>
     <wsdl:port name="DatatSyncSoap12" binding="tns:DatatSyncSoap12">
-      <soap12:address location="http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
+      <soap12:address location="http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

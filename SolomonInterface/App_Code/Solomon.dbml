@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TEST1an3anMAT" Class="SolomonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WIN-IJASUCJVGUJ\SQLEXPRESS;Initial Catalog=TEST1an3anMAT;Persist Security Info=True;User ID=remoteLogin" SettingsObjectName="SolomonInterface.My.MySettings" SettingsPropertyName="TEST1an3anMATConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WIN-IJASUCJVGUJ\SQLEXPRESS;Initial Catalog=TEST1an3anMAT;Integrated Security=True" SettingsObjectName="SolomonInterface.My.MySettings" SettingsPropertyName="TEST1an3anMATConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -428,6 +428,105 @@
       <Column Name="StartingBalance1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="PeriodActivity" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="EndingBalance" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AcctHist" Member="AcctHists">
+    <Type Name="AcctHist">
+      <Column Name="Acct" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AnnBdgt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AnnMemo1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BalanceType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BdgtRvsnDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BegBal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CpnyID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Crtd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Crtd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CuryId" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="DistType" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="FiscYr" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LastClosePerNbr" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="LedgerID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LUpd_DateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_Prog" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="LUpd_User" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NoteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc00" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc01" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc02" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc07" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc08" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc09" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc10" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc11" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdAlloc12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal00" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal01" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal02" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal07" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal08" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal09" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal10" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal11" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdBal12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon00" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon01" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon02" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon07" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon08" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon09" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon10" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon11" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PtdCon12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future01" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future02" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future07" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future08" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future09" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future11" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="S4Future12" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SpreadSheetType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Sub" Type="System.String" DbType="Char(24) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User1" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="User3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="User5" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User6" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="User7" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="User8" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal00" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal01" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal02" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal03" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal04" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal05" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal06" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal07" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal08" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal09" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal10" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal11" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YtdBal12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="YTDEstimated" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tstamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
     </Type>
   </Table>
 </Database>

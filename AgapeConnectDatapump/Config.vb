@@ -241,8 +241,8 @@ Public Class Config
         Try
             
 
-            Dim webURL = CType(DataRepeater1.CurrentItem.Controls.Find("webURL", True).First, Label).Text
-            Dim solConnString = CType(DataRepeater1.CurrentItem.Controls.Find("solCon", True).First, Label).Text
+            ' Dim webURL = CType(DataRepeater1.CurrentItem.Controls.Find("webURL", True).First, Label).Text
+            'Dim solConnString = CType(DataRepeater1.CurrentItem.Controls.Find("solCon", True).First, Label).Text
             '  Dim dsConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dsCon", True).First, Label).Text
 
 

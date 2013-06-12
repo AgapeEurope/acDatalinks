@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.875, 20.375" name="Solomon">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.875, 29.25" name="Solomon">
   <DataContextMoniker Name="/SolomonDataContext" />
   <nestedChildShapes>
     <classShape Id="8b9b5492-3a67-4d5b-83c3-5380033480bb" absoluteBounds="7.125, 1, 2, 9.0783512369791648">
@@ -42,6 +42,12 @@
       <DataClassMoniker Name="/SolomonDataContext/vr_01620_AcctHist" />
       <nestedChildShapes>
         <elementListCompartment Id="c1e4dc7a-caf5-4e2b-a64e-40d1d7cf1be8" absoluteBounds="14.64, 2.21, 1.9700000000000002, 9.4798583984375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3dc88a48-de14-4683-8fad-aa572e900874" absoluteBounds="11.125, 9.875, 2, 19.078025716145834">
+      <DataClassMoniker Name="/SolomonDataContext/AcctHist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3da40d65-1e94-44e1-8dd4-5eab2813cfee" absoluteBounds="11.14, 10.335, 1.9700000000000002, 18.518025716145832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

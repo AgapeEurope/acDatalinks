@@ -26,8 +26,6 @@ Partial Class Config
         Dim PictureBox1 As System.Windows.Forms.PictureBox
         Dim PictureBox2 As System.Windows.Forms.PictureBox
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Config))
-        Me.DatalinksBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AcDatalinks = New AgapeConnectDatapump.acDatalinks()
         Me.DataRepeater1 = New Microsoft.VisualBasic.PowerPacks.DataRepeater()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lblDatalinkId = New System.Windows.Forms.Label()
@@ -47,22 +45,24 @@ Partial Class Config
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TableAdapterManager = New AgapeConnectDatapump.acDatalinksTableAdapters.TableAdapterManager()
-        Me.DatalinksTableAdapter = New AgapeConnectDatapump.acDatalinksTableAdapters.DatalinksTableAdapter()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnAddNew = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblServiceStatus = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.DatalinksBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.AcDatalinks = New AgapeConnectDatapump.acDatalinks()
+        Me.TableAdapterManager = New AgapeConnectDatapump.acDatalinksTableAdapters.TableAdapterManager()
+        Me.DatalinksTableAdapter = New AgapeConnectDatapump.acDatalinksTableAdapters.DatalinksTableAdapter()
         PictureBox1 = New System.Windows.Forms.PictureBox()
         PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DatalinksBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AcDatalinks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DataRepeater1.ItemTemplate.SuspendLayout()
         Me.DataRepeater1.SuspendLayout()
+        CType(Me.DatalinksBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AcDatalinks, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -77,16 +77,6 @@ Partial Class Config
         PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 26
         PictureBox1.TabStop = False
-        '
-        'DatalinksBindingSource
-        '
-        Me.DatalinksBindingSource.DataMember = "Datalinks"
-        Me.DatalinksBindingSource.DataSource = Me.AcDatalinks
-        '
-        'AcDatalinks
-        '
-        Me.AcDatalinks.DataSetName = "acDatalinks"
-        Me.AcDatalinks.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'PictureBox2
         '
@@ -279,7 +269,7 @@ Partial Class Config
         '
         'dwCon
         '
-        Me.dwCon.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DatalinksBindingSource, "dsConnectionString", True))
+        Me.dwCon.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DatalinksBindingSource, "dwConnectionString", True))
         Me.dwCon.Location = New System.Drawing.Point(157, 26)
         Me.dwCon.Name = "dwCon"
         Me.dwCon.Size = New System.Drawing.Size(500, 15)
@@ -326,16 +316,6 @@ Partial Class Config
         Me.Label1.Size = New System.Drawing.Size(75, 20)
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "DevTest"
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.DatalinksTableAdapter = Me.DatalinksTableAdapter
-        Me.TableAdapterManager.UpdateOrder = AgapeConnectDatapump.acDatalinksTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'DatalinksTableAdapter
-        '
-        Me.DatalinksTableAdapter.ClearBeforeFill = True
         '
         'btnRefresh
         '
@@ -400,6 +380,26 @@ Partial Class Config
         Me.Button1.Text = "Settings..."
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'DatalinksBindingSource
+        '
+        Me.DatalinksBindingSource.DataMember = "Datalinks"
+        Me.DatalinksBindingSource.DataSource = Me.AcDatalinks
+        '
+        'AcDatalinks
+        '
+        Me.AcDatalinks.DataSetName = "acDatalinks"
+        Me.AcDatalinks.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.DatalinksTableAdapter = Me.DatalinksTableAdapter
+        Me.TableAdapterManager.UpdateOrder = AgapeConnectDatapump.acDatalinksTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'DatalinksTableAdapter
+        '
+        Me.DatalinksTableAdapter.ClearBeforeFill = True
+        '
         'Config
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -419,12 +419,12 @@ Partial Class Config
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agape Connect (BETA) - Datalink Manager"
         CType(PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DatalinksBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AcDatalinks, System.ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.DataRepeater1.ItemTemplate.ResumeLayout(False)
         Me.DataRepeater1.ItemTemplate.PerformLayout()
         Me.DataRepeater1.ResumeLayout(False)
+        CType(Me.DatalinksBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AcDatalinks, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

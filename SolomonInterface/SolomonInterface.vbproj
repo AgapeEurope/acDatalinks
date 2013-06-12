@@ -169,10 +169,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://agapeconnect.me/DesktopModules/AgapeConnect/StaffAdmin/Datatsync.asmx">
+    <WebReferenceUrl Include="http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/Datatsync.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\dynamicAgapeConnect\</RelPath>
-      <UpdateFromURL>http://agapeconnect.me/DesktopModules/AgapeConnect/StaffAdmin/Datatsync.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/Datatsync.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

@@ -90,6 +90,10 @@ Public Class PollWebsite
 
         si.currentFiscalPeriod = curPeriod
 
+
+        si.FirstFiscalMonth = ds.GLSetups.First.FiscalPerEnd00.Substring(0, 2)
+
+
         'Dim q = From c In ds.vr_01620_AcctHists Where c.AccountActive = 1 And c.PeriodPost = curPeriod And c.AcctHistAcct = 2120
         Dim q = From c In ds.GLTrans Where c.Posted = "P" And c.PerPost = curPeriod And c.Acct.StartsWith(AP) And c.BalanceType = "A"
 
@@ -228,6 +232,13 @@ Public Class PollWebsite
                 If Not update.Rmbs Is Nothing Then
                     ProcessRmbs(update.Rmbs, update.Advances, update.AcctsReceivable, update.AcctsPayable, update.TaxableAcctsReceivable, update.ControlAccount, uResp)
                 End If
+
+
+                If Not update.ChangedBudgets Is Nothing Then
+                    ProcessBudgets(update.ChangedBudgets, uResp)
+                End If
+
+
                 'Send Responses back to webservice
                 WebS.UpdateResponses(_Password, uResp)
 
@@ -260,6 +271,175 @@ Public Class PollWebsite
 
     
 #End Region
+
+
+    Private Sub ProcessBudgets(ByVal buds As dynamicAgapeConnect.AP_Budget_Summary1(), ByRef uResp As dynamicAgapeConnect.UpdateResponse)
+        Dim BlankDate = New Date(1900, 1, 1)
+        For Each bud In buds
+            'Validate Combo
+            If ValidateCombo(bud.RC, bud.Account) Then
+                Try
+
+
+
+
+                    'lookup budget in acctHist
+                    Dim q = From c In ds.AcctHists Where c.LedgerID = ds.GLSetups.First.BudgetLedgerID And c.CpnyID = ds.GLSetups.First.CpnyId And c.Acct.Trim() = bud.Account.Trim() And c.Sub.Trim() = bud.RC.Trim() And c.FiscYr = bud.FiscalYear
+
+                    'Ifexists - overwrite values
+                    If q.Count > 0 Then
+                        q.First.PtdBal00 = bud.P1
+                        q.First.YtdBal00 = bud.P1
+                        q.First.PtdBal01 = bud.P2
+                        q.First.YtdBal01 = q.First.YtdBal00 + bud.P2
+                        q.First.PtdBal02 = bud.P3
+                        q.First.YtdBal02 = q.First.YtdBal01 + bud.P3
+                        q.First.PtdBal03 = bud.P4
+                        q.First.YtdBal03 = q.First.YtdBal02 + bud.P4
+                        q.First.PtdBal04 = bud.P5
+                        q.First.YtdBal04 = q.First.YtdBal03 + bud.P5
+                        q.First.PtdBal05 = bud.P6
+                        q.First.YtdBal05 = q.First.YtdBal04 + bud.P6
+                        q.First.PtdBal06 = bud.P7
+                        q.First.YtdBal06 = q.First.YtdBal05 + bud.P7
+                        q.First.PtdBal07 = bud.P8
+                        q.First.YtdBal07 = q.First.YtdBal06 + bud.P8
+                        q.First.PtdBal08 = bud.P9
+                        q.First.YtdBal08 = q.First.YtdBal07 + bud.P9
+                        q.First.PtdBal09 = bud.P10
+                        q.First.YtdBal09 = q.First.YtdBal08 + bud.P10
+                        q.First.PtdBal10 = bud.P11
+                        q.First.YtdBal10 = q.First.YtdBal09 + bud.P11
+                        q.First.PtdBal11 = bud.P12
+                        q.First.YtdBal11 = q.First.YtdBal10 + bud.P12
+                        q.First.YtdBal12 = q.First.YtdBal11 + q.First.PtdBal12
+                        q.First.AnnBdgt = q.First.YtdBal11
+                        q.First.LUpd_DateTime = Now
+                        q.First.LUpd_User = "SYSADMIN  "
+                    Else 'else - create new entry
+
+                        Dim insert As New AcctHist
+                        insert.Acct = bud.Account
+                        insert.PtdBal00 = bud.P1
+                        insert.YtdBal00 = bud.P1
+                        insert.PtdBal01 = bud.P2
+                        insert.YtdBal01 = insert.YtdBal00 + bud.P2
+                        insert.PtdBal02 = bud.P3
+                        insert.YtdBal02 = insert.YtdBal01 + bud.P3
+                        insert.PtdBal03 = bud.P4
+                        insert.YtdBal03 = insert.YtdBal02 + bud.P4
+                        insert.PtdBal04 = bud.P5
+                        insert.YtdBal04 = insert.YtdBal03 + bud.P5
+                        insert.PtdBal05 = bud.P6
+                        insert.YtdBal05 = insert.YtdBal04 + bud.P6
+                        insert.PtdBal06 = bud.P7
+                        insert.YtdBal06 = insert.YtdBal05 + bud.P7
+                        insert.PtdBal07 = bud.P8
+                        insert.YtdBal07 = insert.YtdBal06 + bud.P8
+                        insert.PtdBal08 = bud.P9
+                        insert.YtdBal08 = insert.YtdBal07 + bud.P9
+                        insert.PtdBal09 = bud.P10
+                        insert.YtdBal09 = insert.YtdBal08 + bud.P10
+                        insert.PtdBal10 = bud.P11
+                        insert.YtdBal10 = insert.YtdBal09 + bud.P11
+                        insert.PtdBal11 = bud.P12
+                        insert.YtdBal11 = insert.YtdBal10 + bud.P12
+                        insert.YtdBal12 = insert.YtdBal11
+
+                        insert.AnnBdgt = insert.YtdBal11
+                        insert.LUpd_DateTime = Now
+                        insert.LUpd_User = "SYSADMIN  "
+                        insert.AnnMemo1 = 0
+                        insert.BalanceType = "B"
+                        insert.BdgtRvsnDate = Now
+                        insert.BegBal = 0
+                        insert.CpnyID = ds.GLSetups.First.CpnyId
+                        insert.Crtd_DateTime = Now
+                        insert.Crtd_Prog = "01250   "
+                        insert.Crtd_User = "SYSADMIN  "
+                        insert.CuryId = ds.GLSetups.First.BaseCuryId
+                        insert.DistType = "        "
+                        insert.FiscYr = bud.FiscalYear
+                        insert.LastClosePerNbr = "        "
+                        insert.LedgerID = ds.GLSetups.First.BudgetLedgerID
+                        insert.LUpd_Prog = "01250   "
+                        insert.NoteID = 0
+                        insert.PtdAlloc00 = 0
+                        insert.PtdAlloc01 = 0
+                        insert.PtdAlloc02 = 0
+                        insert.PtdAlloc03 = 0
+                        insert.PtdAlloc04 = 0
+                        insert.PtdAlloc05 = 0
+                        insert.PtdAlloc06 = 0
+                        insert.PtdAlloc07 = 0
+                        insert.PtdAlloc08 = 0
+                        insert.PtdAlloc09 = 0
+                        insert.PtdAlloc10 = 0
+                        insert.PtdAlloc11 = 0
+                        insert.PtdAlloc12 = 0
+                        insert.PtdBal12 = 0
+                        insert.PtdCon00 = 0
+                        insert.PtdCon01 = 0
+                        insert.PtdCon02 = 0
+                        insert.PtdCon03 = 0
+                        insert.PtdCon04 = 0
+                        insert.PtdCon05 = 0
+                        insert.PtdCon06 = 0
+                        insert.PtdCon07 = 0
+                        insert.PtdCon08 = 0
+                        insert.PtdCon09 = 0
+                        insert.PtdCon10 = 0
+                        insert.PtdCon11 = 0
+                        insert.PtdCon12 = 0
+                        insert.S4Future01 = ""
+                        insert.S4Future02 = ""
+                        insert.S4Future03 = 0
+                        insert.S4Future04 = 0
+                        insert.S4Future05 = 0
+                        insert.S4Future06 = 0
+                        insert.S4Future07 = BlankDate
+                        insert.S4Future08 = BlankDate
+                        insert.S4Future09 = 0
+                        insert.S4Future10 = 0
+                        insert.S4Future11 = ""
+                        insert.S4Future12 = ""
+
+                        insert.Sub = bud.RC
+                        insert.SpreadSheetType = " "
+                        insert.User1 = ""
+                        insert.User2 = ""
+                        insert.User3 = 0
+                        insert.User4 = 0
+                        insert.User5 = ""
+                        insert.User6 = ""
+                        insert.User7 = BlankDate
+                        insert.User8 = BlankDate
+                        insert.YTDEstimated = 0
+                        ds.AcctHists.InsertOnSubmit(insert)
+
+                    End If
+                    ds.SubmitChanges()
+                    bud.Error = False
+                    bud.ErrorMessage = Nothing
+                    bud.Changed = False
+                Catch ex As Exception
+                    bud.Error = True
+                    bud.ErrorMessage = "ERROR: " & Left(ex.Message, 500)
+
+                End Try
+            Else 'invalid Combo
+                bud.Error = True
+                bud.ErrorMessage = "ERROR: Invalid Account/RC combination. This budget cannot be added, as this combination of Account Code and R/C does not exists in Dynamics."
+
+            End If
+
+        Next
+
+        uResp.Budgets = buds
+
+    End Sub
+
+
 
 #Region "tntDataserver Interface"
    

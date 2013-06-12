@@ -150,6 +150,9 @@
     <EmbeddedResource Include="SQLConnectionDialog.resx">
       <DependentUpon>SQLConnectionDialog.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="Web References\dynamicAgapeConnect\SPResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -178,10 +181,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx">
+    <WebReferenceUrl Include="http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\dynamicAgapeConnect\</RelPath>
-      <UpdateFromURL>http://localhost:13059/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:37881/DesktopModules/AgapeConnect/StaffAdmin/DatatSync.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
