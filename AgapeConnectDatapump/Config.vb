@@ -4,7 +4,7 @@ Imports SolomonInterface
 Imports System.Threading
 Public Class Config
 
-    Private refreshThread As New Thread(New System.Threading.ThreadStart(AddressOf RefreshForm))
+    'Private refreshThread As New Thread(New System.Threading.ThreadStart(AddressOf RefreshForm))
 
     Structure NameValue
         Public DisplayName As String
@@ -16,7 +16,7 @@ Public Class Config
     Private _baseConnectionString As String = ""
 
     Private Sub Config_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        refreshThread.Abort()
+        '   refreshThread.Abort()
 
     End Sub
 
@@ -44,18 +44,18 @@ Public Class Config
             End If
         End Using
 
-        refreshThread.Start()
+        ' refreshThread.Start()
     End Sub
 
 
 
-    Public Sub RefreshForm()
-        Do
-            System.Threading.Thread.Sleep(30000) ' milliseconds
-            SetData()
-            GetServiceStatus()
-        Loop
-    End Sub
+    'Public Sub RefreshForm()
+    '    Do
+    '        'System.Threading.Thread.Sleep(30000) ' milliseconds
+    '        SetData()
+    '        GetServiceStatus()
+    '    Loop
+    'End Sub
     Delegate Sub SetServiceTextCallback([text] As String)
     Private Sub SetServiceText(ByVal [text] As String)
 
