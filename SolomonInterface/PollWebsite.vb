@@ -829,7 +829,7 @@ Public Class PollWebsite
             If Not ValidateAdv(adv, advStatus, AccsReceivable, AccsPayable) Then ' Validate
                 rtn.Add(advStatus)
             Else
-                Dim ref = adv.UserInitials & "-" & ZeroFill(adv.LocalAdvanceId, 7)
+                Dim ref = Left(adv.UserInitials & "-" & ZeroFill(adv.LocalAdvanceId, 7) & adv.OrigCurrency, 30)
                 Dim refNbr = "R" & ZeroFill(adv.LocalAdvanceId, 7)
                 ts.Add(createTransaction(refNbr, BatNumber, i, ds.GLSetups.First, adv.LocalAdvanceId, adv.PersonalCostCenter, AccsReceivable, ref, IIf(adv.Amount > 0, 0, adv.Amount), IIf(adv.Amount > 0, adv.Amount, 0), adv.ProcessDate, advStatus))
                 i += 1

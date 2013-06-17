@@ -911,6 +911,8 @@ Namespace dynamicAgapeConnect
         
         Private yearField As Integer
         
+        Private origCurrencyField As String
+        
         '''<remarks/>
         Public Property AdvanceId() As Integer
             Get
@@ -1068,6 +1070,16 @@ Namespace dynamicAgapeConnect
             End Get
             Set
                 Me.yearField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property OrigCurrency() As String
+            Get
+                Return Me.origCurrencyField
+            End Get
+            Set
+                Me.origCurrencyField = value
             End Set
         End Property
     End Class

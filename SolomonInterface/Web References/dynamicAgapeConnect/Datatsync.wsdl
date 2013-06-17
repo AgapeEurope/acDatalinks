@@ -293,6 +293,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="Period" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrigCurrency" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="TestRequestUpdate">
