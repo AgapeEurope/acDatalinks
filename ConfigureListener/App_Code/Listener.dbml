@@ -77,4 +77,7 @@
       <Column Name="Spare5" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.VerifyNewColumns" Method="VerifyNewColumns">
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

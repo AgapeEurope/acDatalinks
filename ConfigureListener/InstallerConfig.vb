@@ -267,6 +267,17 @@ Public Class InstallerConfig
 
     Public Overrides Sub Commit(savedState As System.Collections.IDictionary)
         MyBase.Commit(savedState)
+        Dim location = System.Reflection.Assembly.GetExecutingAssembly.Location
+
+        location = location.Replace("ConfigureListener.dll", "AgapeConnectListener.exe")
+        Dim conf = ConfigurationManager.OpenExeConfiguration(location)
+
+
+        Dim conStr = conf.ConnectionStrings.ConnectionStrings("AgapeConnectListener.My.MySettings.acConnectionString").ConnectionString
+        Dim d As New ListenerDataContext(conStr)
+        d.VerifyNewColumns()
+
+
         'Dim location1 = System.Reflection.Assembly.GetExecutingAssembly.Location
         'Dim dir = location1.Substring(0, location1.LastIndexOf("\"))
         'Dim location2 = location1.Replace("ConfigureListener.dll", "AgapeConnectDatapump.exe")

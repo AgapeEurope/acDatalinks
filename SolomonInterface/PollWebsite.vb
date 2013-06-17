@@ -28,9 +28,9 @@ Public Class PollWebsite
                 Status = "Off"
                 Return
             End If
-            If String.IsNullOrEmpty(dl.dsConnectionString) Or String.IsNullOrEmpty(dl.solConnectionString) Or String.IsNullOrEmpty(dl.webURL) Or String.IsNullOrEmpty(dl.webPassword) Or (Not dl.solConnectionString.Contains("Catalog")) Or (Not dl.dsConnectionString.Contains("Catalog")) Then
+            If String.IsNullOrEmpty(dl.solConnectionString) Or String.IsNullOrEmpty(dl.webURL) Or String.IsNullOrEmpty(dl.webPassword) Or (Not dl.solConnectionString.Contains("Catalog")) Then
 
-                Status = "This datalink has not been setup. Please setup the connection to Dataserver, Solomon(Dynamics) and your Website in ACDatalinks Manager"
+                Status = "This datalink has not been setup. Please setup the connection to  Solomon(Dynamics) and your Website in ACDatalinks Manager"
                 dl.Error = True
                 dl.ErrorMessage = Status
                 d.SubmitChanges()
@@ -95,7 +95,7 @@ Public Class PollWebsite
 
 
         'Dim q = From c In ds.vr_01620_AcctHists Where c.AccountActive = 1 And c.PeriodPost = curPeriod And c.AcctHistAcct = 2120
-        Dim q = From c In ds.GLTrans Where c.Posted = "P" And c.PerPost = curPeriod And c.Acct.StartsWith(AP) And c.BalanceType = "A"
+        Dim q = From c In ds.GLTrans Where c.Posted = "P" And c.PerPost = curPeriod And c.Acct.StartsWith(AP) And c.BalanceType = "A" And c.LedgerID = ds.GLSetups.First.LedgerID
 
         If q.Count <> dl.Spare1 Then
             ' Dim b = From c In ds.vr_01620_AcctHists Where c.PeriodPost = curPeriod And c.AcctHistBalanceType = "A" And (c.AcctHistAcct.StartsWith(AP) Or c.AcctHistAcct.StartsWith(APtax))
@@ -103,7 +103,7 @@ Public Class PollWebsite
             ' Dim b = From c In ds.vr_01620_AcctHists Where c.PeriodPost = curPeriod And c.AcctHistBalanceType = "A"
             '                        Group By c.AcctHistSub Into g = Group Select New With {AcctHistSub, .AccBal = g.Select(Function(x) x.EndingBalance).Sum, .AdvanceBalance = g.Where(Function(x) x.AcctHistAcct.StartsWith(AdvAcc)).Select(Function(x) x.EndingBalance).Sum, .AccPay = g.Where(Function(x) x.AcctHistAcct.StartsWith(AP)).Select(Function(x) x.EndingBalance).Sum, .TaxAccPay = g.Where(Function(x) x.AcctHistAcct.StartsWith(APtax)).Select(Function(x) x.EndingBalance).Sum}
 
-            Dim b = From c In ds.vr_01620_AcctHists Where c.PeriodPost = curPeriod And c.AcctHistBalanceType = "A" Group By c.AcctHistSub Into g = Group
+            Dim b = From c In ds.vr_01620_AcctHists Where c.PeriodPost = curPeriod And c.AcctHistBalanceType = "A" And c.AcctHistLedgerID = ds.GLSetups.First.LedgerID Group By c.AcctHistSub Into g = Group
 
 
 
@@ -165,6 +165,46 @@ Public Class PollWebsite
         End If
     End Sub
 
+    Private Sub GetChangedBudgets()
+
+        Dim changedBudgets = From c In ds.AcctHists Where c.LedgerID = (ds.GLSetups.First.BudgetLedgerID) And c.CpnyID = ds.GLSetups.First.CpnyId And c.LUpd_DateTime > dl.LastSync
+
+        Dim upload As New List(Of dynamicAgapeConnect.AP_Budget_Summary1)
+        For Each row In changedBudgets
+            Dim insert As New dynamicAgapeConnect.AP_Budget_Summary1
+            insert.Account = row.Acct
+            insert.Changed = False
+            insert.Error = False
+            insert.ErrorMessage = "*Changed in Dynamics"
+            insert.FiscalYear = row.FiscYr
+            insert.LastUpdated = row.LUpd_DateTime
+            insert.P1 = row.PtdBal00
+            insert.P2 = row.PtdBal01
+            insert.P3 = row.PtdBal02
+            insert.P4 = row.PtdBal03
+            insert.P5 = row.PtdBal04
+            insert.P6 = row.PtdBal05
+            insert.P7 = row.PtdBal06
+            insert.P8 = row.PtdBal07
+            insert.P9 = row.PtdBal08
+            insert.P10 = row.PtdBal09
+            insert.P11 = row.PtdBal10
+            insert.P12 = row.PtdBal11
+            insert.RC = row.Sub
+            upload.Add(insert)
+        Next
+        si.changedBudgets = upload.ToArray
+
+
+
+
+
+
+
+    End Sub
+
+
+
     Public Function Sync() As dynamicAgapeConnect.StatusDescription
         Dim rtn As New dynamicAgapeConnect.StatusDescription
         Try
@@ -178,7 +218,7 @@ Public Class PollWebsite
 
 
             CheckForNewAPBalances()
-
+            GetChangedBudgets()
 
             If UpdateAccountsCodes(_ccs, _accs) Then
                 dl.AccountCodeCount = _accs.Count

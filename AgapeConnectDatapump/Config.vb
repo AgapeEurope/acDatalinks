@@ -24,17 +24,19 @@ Public Class Config
 
     Private Sub Config_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
-
-
-        Me.Text = "Agape Connect (BETA) - Datalink Manager (Version " & System.Reflection.Assembly.GetExecutingAssembly.GetName().Version.ToString & ")"
-
-
-
-        Me.DatalinksTableAdapter.Fill(Me.AcDatalinks.Datalinks)
-
-        GetServiceStatus()
-        GetBaseConnection()
         Using d As New ListenerDataContext
+
+
+
+            Me.Text = "Agape Connect - Datalink Manager (Version " & System.Reflection.Assembly.GetExecutingAssembly.GetName().Version.ToString & ")"
+
+
+
+            Me.DatalinksTableAdapter.Fill(Me.AcDatalinks.Datalinks)
+
+            GetServiceStatus()
+            GetBaseConnection()
+
 
 
             If d.Datalinks.Count = 0 Then
@@ -108,7 +110,7 @@ Public Class Config
 
     End Sub
 
-    Private Sub btnEditDataserver_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles btnEditDonorwise.LinkClicked
+    Private Sub btnEditDonorwise_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles btnEditDonorwise.LinkClicked
         'Edit Dataserver connection
         Dim OldState As Boolean = False
         Dim dwConnString = CType(DataRepeater1.CurrentItem.Controls.Find("dwCon", True).First, Label).Text
@@ -137,13 +139,13 @@ Public Class Config
                     If rslt = Windows.Forms.DialogResult.OK Then
 
                         q.First.dwConnectionString = dsEdit.ConnectionString
-                       
+
                         d.SubmitChanges()
 
                     Else
                         d.SubmitChanges()
                     End If
-                    
+
                 End Using
                 Me.Enabled = True
                 Me.DatalinksTableAdapter.Fill(Me.AcDatalinks.Datalinks)
