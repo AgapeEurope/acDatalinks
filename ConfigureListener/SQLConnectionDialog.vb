@@ -18,7 +18,7 @@ Public Class SQLConnectionDialog
         cp("User Instance") = False
         cp("Initial Catalog") = "acDatalinks"
         cp("Persist Security Info") = True
-
+        cp("Connect Timeout") = "20"
 
         uic = New Microsoft.Data.ConnectionUI.SqlConnectionUIControl
 
@@ -119,5 +119,7 @@ Public Class SQLConnectionDialog
 
 
     End Sub
+
+    
 End Class
 

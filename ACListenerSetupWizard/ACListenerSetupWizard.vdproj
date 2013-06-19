@@ -226,7 +226,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0CBF4A5ED4714BD292B3BF68F282F286"
             {
             "Name" = "8:Primary output from ConfigureListener (Active)"
-            "Condition" = "8:"
+            "Condition" = "8:NOT UPGRADINGPRODUCTCODE"
             "Object" = "8:_11FD2F4F84104E5BA05C9AFE1CA1375A"
             "FileType" = "3:1"
             "InstallAction" = "3:3"
@@ -296,7 +296,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_827E4316D08C491186A8F7B964717B9D"
             {
             "Name" = "8:Primary output from ConfigureListener (Active)"
-            "Condition" = "8:"
+            "Condition" = "8:Not (Installed OR PREVIOUSVERSIONSINSTALLED)"
             "Object" = "8:_11FD2F4F84104E5BA05C9AFE1CA1375A"
             "FileType" = "3:1"
             "InstallAction" = "3:2"
@@ -305,7 +305,7 @@
             "Sequence" = "3:3"
             "Identifier" = "8:_3F57E7F1_C2B8_41C6_B44E_DF701147D8D0"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
+            "CustomActionData" = "8:/TARGETDIR=\"[TARGETDIR]\\\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A0E332F2B41D45519A90A48910FE48ED"
             {
@@ -424,7 +424,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SolomonInterface, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SolomonInterface, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_7BB723588D1A2207833A9B5BC4CE2297"
@@ -611,15 +611,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ACDatalinks"
-        "ProductCode" = "8:{6A4CFE73-84E8-4E82-AA97-DB9D5A6EEFAC}"
-        "PackageCode" = "8:{83B05C24-23FE-414A-A899-108919326C2B}"
+        "ProductCode" = "8:{14779ACA-AA24-4379-8701-51A59D882EE8}"
+        "PackageCode" = "8:{63F6294E-0551-4E68-BF48-406B3FAFC51D}"
         "UpgradeCode" = "8:{9BE1F3CF-6A31-4AD2-B0DE-C0211BB1FFA3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.1"
+        "ProductVersion" = "8:1.1.3"
         "Manufacturer" = "8:Agape"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://agapeconnect.me"

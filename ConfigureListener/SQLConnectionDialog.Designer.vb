@@ -78,9 +78,9 @@ Partial Class SQLConnectionDialog
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(2, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(379, 13)
+        Me.Label1.Size = New System.Drawing.Size(357, 13)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Please enter the sql connection details for creating the database:"
+        Me.Label1.Text = "Please enter sql connection details for creating the database:"
         '
         'Label2
         '
@@ -100,8 +100,8 @@ Partial Class SQLConnectionDialog
         Me.Label3.Size = New System.Drawing.Size(358, 42)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "(Tip: If you also give this user select/update/insert permissions to the Solomon " & _
-    "Application database(s) and read access to dataserver, you will save time later)" & _
-    ""
+            "Application database(s) and read access to dataserver, you will save time later)" & _
+            ""
         '
         'TableLayoutPanel2
         '

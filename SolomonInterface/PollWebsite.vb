@@ -648,7 +648,7 @@ Public Class PollWebsite
         Dim q = From c In ds.vs_AcctSubs Where c.Acct = Account And c.Sub = CostCenter And c.Active
         Return q.Count > 0
 
-        
+
     End Function
 
 
@@ -770,6 +770,7 @@ Public Class PollWebsite
         For Each theRmb In Rmbs
             Dim rmbStatus As New dynamicAgapeConnect.StatusDescription
             rmbStatus.RowId = theRmb.RmbNo
+
             If Not ValidateRmb(theRmb, rmbStatus) Then ' Validate
 
                 rtn.Add(rmbStatus)
@@ -854,9 +855,13 @@ Public Class PollWebsite
 
 
         Try
-            ds.Batches.InsertOnSubmit(batchHeader)
-            ds.GLTrans.InsertAllOnSubmit(ts.AsEnumerable)
-            ds.SubmitChanges()
+            If ts.Count > 0 Then
+
+                ds.Batches.InsertOnSubmit(batchHeader)
+                ds.GLTrans.InsertAllOnSubmit(ts.AsEnumerable)
+                ds.SubmitChanges()
+            End If
+
 
 
 
