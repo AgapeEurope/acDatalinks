@@ -67,7 +67,10 @@ Public Class PollWebsite
 
     Private Sub CheckForNewAPBalances()
         Dim curPeriod = ds.GLSetups.First.PerNbr
+        si.currentFiscalPeriod = curPeriod
 
+
+        si.FirstFiscalMonth = ds.GLSetups.First.FiscalPerEnd00.Substring(0, 2)
 
         Dim AP = "UNKNOWN" 'NEED TO GET THESE DYNAMICALLY
         Dim APtax = "UNKNOWN"  'NEED TO GET THESE DYNAMICALLY
@@ -88,10 +91,7 @@ Public Class PollWebsite
 
 
 
-        si.currentFiscalPeriod = curPeriod
-
-
-        si.FirstFiscalMonth = ds.GLSetups.First.FiscalPerEnd00.Substring(0, 2)
+        
 
 
         'Dim q = From c In ds.vr_01620_AcctHists Where c.AccountActive = 1 And c.PeriodPost = curPeriod And c.AcctHistAcct = 2120
