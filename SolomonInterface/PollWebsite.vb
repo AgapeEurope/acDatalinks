@@ -67,10 +67,16 @@ Public Class PollWebsite
 
     Private Sub CheckForNewAPBalances()
         Dim curPeriod = ds.GLSetups.First.PerNbr
-        si.currentFiscalPeriod = curPeriod
+
 
 
         si.FirstFiscalMonth = ds.GLSetups.First.FiscalPerEnd00.Substring(0, 2)
+        If si.FirstFiscalMonth > 1 And ds.GLSetups.First.BegFiscalYr = 1 Then
+            curPeriod = CInt(curPeriod.Substring(0, 4)) - 1 & curPeriod.Substring(4, 2)
+
+
+        End If
+        si.currentFiscalPeriod = curPeriod
 
         Dim AP = "UNKNOWN" 'NEED TO GET THESE DYNAMICALLY
         Dim APtax = "UNKNOWN"  'NEED TO GET THESE DYNAMICALLY
@@ -83,7 +89,7 @@ Public Class PollWebsite
             If accounts.Count > 2 Then
                 AdvAcc = accounts(2).Trim(";")
             End If
-           
+
         End If
         If AP = "UNKNOWN" Then
             Return 'Accounts Payable has not yet been setup
@@ -91,7 +97,7 @@ Public Class PollWebsite
 
 
 
-        
+
 
 
         'Dim q = From c In ds.vr_01620_AcctHists Where c.AccountActive = 1 And c.PeriodPost = curPeriod And c.AcctHistAcct = 2120
@@ -166,8 +172,12 @@ Public Class PollWebsite
     End Sub
 
     Private Sub GetChangedBudgets()
+        Dim LastSync As Date = dl.LastSync.Value
 
-        Dim changedBudgets = From c In ds.AcctHists Where c.LedgerID = (ds.GLSetups.First.BudgetLedgerID) And c.CpnyID = ds.GLSetups.First.CpnyId And c.LUpd_DateTime > dl.LastSync
+        If dl.LastSync Is Nothing Then
+            LastSync = Today.AddYears(-2)
+        End If
+        Dim changedBudgets = From c In ds.AcctHists Where c.LedgerID = (ds.GLSetups.First.BudgetLedgerID) And c.CpnyID = ds.GLSetups.First.CpnyId And (c.LUpd_DateTime > LastSync)
 
         Dim upload As New List(Of dynamicAgapeConnect.AP_Budget_Summary1)
         For Each row In changedBudgets
