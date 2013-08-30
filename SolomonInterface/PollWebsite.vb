@@ -655,6 +655,9 @@ Public Class PollWebsite
 
 
     Private Function ValidateCombo(ByVal CostCenter As String, ByVal Account As String) As Boolean
+        If ds.GLSetups.First.ValidateAcctSub = 0 Then
+            Return True
+        End If
         Dim q = From c In ds.vs_AcctSubs Where c.Acct = Account And c.Sub = CostCenter And c.Active
         Return q.Count > 0
 
