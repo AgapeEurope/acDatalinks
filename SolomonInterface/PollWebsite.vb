@@ -504,11 +504,111 @@ Public Class PollWebsite
 
 #End Region
 #Region "Solomon Interface"
-    Private Function GetNewBatchNumber() As Integer
-        Dim q = ds.GLSetups.First
-        q.LastBatNbr = ZeroFill(CInt(q.LastBatNbr + 1), 6)
-        ds.SubmitChanges()
-        Return CInt(q.LastBatNbr)
+    Private Function GetNewBatch(ByVal TotalAmt As Double, ByRef isNewBatch As Boolean, ByRef origTotalAmt As Double) As Batch
+        'find if there is an existing batch to add to.
+        Dim newBatch = From c In ds.Batches Where c.PerEnt = ds.GLSetups.First.PerNbr And c.Status = "H" And c.Rlsed = 0 And c.Crtd_User = "SYSADMIN" And c.BatType = "N" And c.LedgerID = ds.GLSetups.First.LedgerID Order By c.BatNbr Descending
+
+        If newBatch.Count > 0 Then
+            origTotalAmt = newBatch.First.CtrlTot
+            newBatch.First.CrTot += TotalAmt
+            newBatch.First.CtrlTot += TotalAmt
+            newBatch.First.CuryCrTot += TotalAmt
+            newBatch.First.CuryCtrlTot += TotalAmt
+            newBatch.First.CuryDrTot += TotalAmt
+            newBatch.First.DrTot += TotalAmt
+
+            isNewBatch = False
+            Return newBatch.First
+        Else
+
+            Dim q = ds.GLSetups.First
+            q.LastBatNbr = ZeroFill(CInt(q.LastBatNbr + 1), 6)
+            ds.SubmitChanges()
+            Dim BlankDate = New Date(1900, 1, 1)
+
+            Dim BatNumber = CInt(q.LastBatNbr)
+            Dim batchHeader As New Batch
+            batchHeader.Acct = ""
+            batchHeader.AutoRev = 0
+            batchHeader.AutoRevCopy = 0
+            batchHeader.BalanceType = "A"
+            batchHeader.BankAcct = ""
+            batchHeader.BankSub = ""
+            batchHeader.BaseCuryID = ds.GLSetups.First.BaseCuryId
+            batchHeader.BatNbr = ZeroFill(BatNumber, 6)
+            batchHeader.BatType = "N"
+            batchHeader.clearamt = 0
+            batchHeader.Cleared = 0
+            batchHeader.CpnyID = ds.GLSetups.First.CpnyId
+            batchHeader.Crtd_DateTime = Today
+            batchHeader.Crtd_Prog = "01010"
+            batchHeader.Crtd_User = "SYSADMIN"
+            batchHeader.CrTot = TotalAmt
+            batchHeader.CtrlTot = TotalAmt
+            batchHeader.CuryCrTot = TotalAmt
+            batchHeader.CuryCtrlTot = TotalAmt
+            batchHeader.CuryDepositAmt = 0
+            batchHeader.CuryDrTot = TotalAmt
+            batchHeader.CuryEffDate = Today
+            batchHeader.CuryId = ds.GLSetups.First.BaseCuryId
+            batchHeader.CuryMultDiv = "M"
+            batchHeader.CuryRate = 1.0
+            batchHeader.CuryRateType = ""
+            batchHeader.Cycle = 0
+            batchHeader.DateClr = BlankDate
+            batchHeader.DateEnt = Today
+            batchHeader.DepositAmt = 0
+            batchHeader.Descr = ""
+            batchHeader.DrTot = TotalAmt
+            batchHeader.EditScrnNbr = "01010"
+            batchHeader.GLPostOpt = "D"
+            batchHeader.JrnlType = "GJ"
+            batchHeader.LedgerID = ds.GLSetups.First.LedgerID
+            batchHeader.LUpd_DateTime = Today
+            batchHeader.LUpd_Prog = "01010"
+            batchHeader.LUpd_User = "SYSADMIN"
+            batchHeader.Module = "GL"
+            batchHeader.NbrCycle = 0
+            batchHeader.NoteID = 0
+            batchHeader.OrigBatNbr = ""
+            batchHeader.OrigCpnyID = "" ' ds.GLSetups.First.CpnyId   ' (Troy puts CpnyId, but all other batches are blank for batch header)
+            batchHeader.OrigScrnNbr = ""
+            batchHeader.PerEnt = ds.GLSetups.First.PerNbr
+            batchHeader.PerPost = ds.GLSetups.First.PerNbr
+            batchHeader.Rlsed = 0
+            batchHeader.Status = "H"
+            batchHeader.Sub = ""
+            batchHeader.S4Future01 = ""
+            batchHeader.S4Future02 = ""
+            batchHeader.S4Future03 = 0
+            batchHeader.S4Future04 = 0
+            batchHeader.S4Future05 = 0
+            batchHeader.S4Future06 = 0
+            batchHeader.S4Future07 = BlankDate
+            batchHeader.S4Future08 = BlankDate
+            batchHeader.S4Future09 = 0
+            batchHeader.S4Future10 = 0
+            batchHeader.S4Future11 = ""
+            batchHeader.S4Future12 = ""
+            batchHeader.User1 = ""
+            batchHeader.User2 = ""
+            batchHeader.User3 = 0
+            batchHeader.User4 = 0
+            batchHeader.User5 = ""
+            batchHeader.User6 = ""
+            batchHeader.User7 = BlankDate
+            batchHeader.User8 = BlankDate
+            Return batchHeader
+
+        End If
+
+
+
+
+
+
+
+
     End Function
 
 
@@ -695,83 +795,14 @@ Public Class PollWebsite
         ' Dim dS As New SolomonDataContext
         Dim BlankDate = New Date(1900, 1, 1)
         ' Dim PeriodStr = "YYYYMM"    ' Need to get this for the Fiscal period from the GLSetup table
-        Dim BatNumber As Integer = GetNewBatchNumber()
+
         Dim TotalAmt = (From c In Rmbs Select CDbl(c.Lines.Sum(Function(p) p.GrossAmount))).Sum  ' What about advances
         TotalAmt += (From c In Advances Select CDbl(c.Amount)).Sum
+        Dim isNewBatch = True
 
-
-
-        Dim batchHeader As New Batch
-        batchHeader.Acct = ""
-        batchHeader.AutoRev = 0
-        batchHeader.AutoRevCopy = 0
-        batchHeader.BalanceType = "A"
-        batchHeader.BankAcct = ""
-        batchHeader.BankSub = ""
-        batchHeader.BaseCuryID = ds.GLSetups.First.BaseCuryId
-        batchHeader.BatNbr = ZeroFill(BatNumber, 6)
-        batchHeader.BatType = "N"
-        batchHeader.clearamt = 0
-        batchHeader.Cleared = 0
-        batchHeader.CpnyID = ds.GLSetups.First.CpnyId
-        batchHeader.Crtd_DateTime = Today
-        batchHeader.Crtd_Prog = "01010"
-        batchHeader.Crtd_User = "SYSADMIN"
-        batchHeader.CrTot = TotalAmt
-        batchHeader.CtrlTot = TotalAmt
-        batchHeader.CuryCrTot = TotalAmt
-        batchHeader.CuryCtrlTot = TotalAmt
-        batchHeader.CuryDepositAmt = 0
-        batchHeader.CuryDrTot = TotalAmt
-        batchHeader.CuryEffDate = Today
-        batchHeader.CuryId = ds.GLSetups.First.BaseCuryId
-        batchHeader.CuryMultDiv = "M"
-        batchHeader.CuryRate = 1.0
-        batchHeader.CuryRateType = ""
-        batchHeader.Cycle = 0
-        batchHeader.DateClr = BlankDate
-        batchHeader.DateEnt = Today
-        batchHeader.DepositAmt = 0
-        batchHeader.Descr = ""
-        batchHeader.DrTot = TotalAmt
-        batchHeader.EditScrnNbr = "01010"
-        batchHeader.GLPostOpt = "D"
-        batchHeader.JrnlType = "GJ"
-        batchHeader.LedgerID = ds.GLSetups.First.LedgerID
-        batchHeader.LUpd_DateTime = Today
-        batchHeader.LUpd_Prog = "01010"
-        batchHeader.LUpd_User = "SYSADMIN"
-        batchHeader.Module = "GL"
-        batchHeader.NbrCycle = 0
-        batchHeader.NoteID = 0
-        batchHeader.OrigBatNbr = ""
-        batchHeader.OrigCpnyID = "" ' ds.GLSetups.First.CpnyId   ' (Troy puts CpnyId, but all other batches are blank for batch header)
-        batchHeader.OrigScrnNbr = ""
-        batchHeader.PerEnt = ds.GLSetups.First.PerNbr
-        batchHeader.PerPost = ds.GLSetups.First.PerNbr
-        batchHeader.Rlsed = 0
-        batchHeader.Status = "H"
-        batchHeader.Sub = ""
-        batchHeader.S4Future01 = ""
-        batchHeader.S4Future02 = ""
-        batchHeader.S4Future03 = 0
-        batchHeader.S4Future04 = 0
-        batchHeader.S4Future05 = 0
-        batchHeader.S4Future06 = 0
-        batchHeader.S4Future07 = BlankDate
-        batchHeader.S4Future08 = BlankDate
-        batchHeader.S4Future09 = 0
-        batchHeader.S4Future10 = 0
-        batchHeader.S4Future11 = ""
-        batchHeader.S4Future12 = ""
-        batchHeader.User1 = ""
-        batchHeader.User2 = ""
-        batchHeader.User3 = 0
-        batchHeader.User4 = 0
-        batchHeader.User5 = ""
-        batchHeader.User6 = ""
-        batchHeader.User7 = BlankDate
-        batchHeader.User8 = BlankDate
+        Dim orig_tot_amt = 0.0
+        Dim BatchHeader = GetNewBatch(TotalAmt, isNewBatch, orig_tot_amt)
+        Dim BatNumber As Integer = BatchHeader.BatNbr
 
 
 
@@ -779,7 +810,14 @@ Public Class PollWebsite
         Dim ts As New List(Of GLTran)
 
         Dim i As Integer = 1
+        If Not isNewBatch Then
+            'get the starting line number
+            i = (From c In ds.GLTrans Where c.BatNbr = BatchHeader.BatNbr Order By c.LineNbr Descending Select c.LineNbr).FirstOrDefault + 1
 
+
+
+        End If
+        Dim orig_line_id = i
         For Each theRmb In Rmbs
             Dim rmbStatus As New dynamicAgapeConnect.StatusDescription
             rmbStatus.RowId = theRmb.RmbNo
@@ -869,8 +907,10 @@ Public Class PollWebsite
 
         Try
             If ts.Count > 0 Then
+                If isNewBatch Then
+                    ds.Batches.InsertOnSubmit(BatchHeader)
+                End If
 
-                ds.Batches.InsertOnSubmit(batchHeader)
                 ds.GLTrans.InsertAllOnSubmit(ts.AsEnumerable)
                 ds.SubmitChanges()
             End If
@@ -885,8 +925,19 @@ Public Class PollWebsite
             ' EventLog1.WriteEntry(ex.Message)
 
             'EventLog1.WriteEntry("Backing Out Transactions")
-            ds.GLTrans.DeleteAllOnSubmit(From c In ds.GLTrans Where c.BatNbr = batchHeader.BatNbr And c.Module = "GL")
-            ds.Batches.DeleteAllOnSubmit(From c In ds.Batches Where c.BatNbr = batchHeader.BatNbr And c.Module = "GL")
+            ds.GLTrans.DeleteAllOnSubmit(From c In ds.GLTrans Where c.BatNbr = BatchHeader.BatNbr And c.Module = "GL" And c.LineNbr >= orig_line_id)
+            If isNewBatch Then
+
+                ds.Batches.DeleteAllOnSubmit(From c In ds.Batches Where c.BatNbr = BatchHeader.BatNbr And c.Module = "GL")
+            Else
+                BatchHeader.CrTot = orig_tot_amt
+                BatchHeader.CtrlTot = orig_tot_amt
+                BatchHeader.CuryCrTot = orig_tot_amt
+                BatchHeader.CuryCtrlTot = orig_tot_amt
+                BatchHeader.CuryDrTot = orig_tot_amt
+                BatchHeader.DrTot = orig_tot_amt
+            End If
+         
             ds.SubmitChanges()
             For Each row In rtn
                 row.Status = "ERROR"
@@ -917,14 +968,14 @@ Public Class PollWebsite
         NormalizeSolPeriod(period, aYear, aMonth)
 
 
-        Dim StartDate = New Date(aYear, aMonth, 1)
-        Dim EndDate = StartDate.AddMonths(1).AddDays(-1)
-        If TransDate < StartDate Then
-            TransDate = StartDate
-        End If
-        If TransDate > EndDate Then
-            TransDate = EndDate
-        End If
+        'Dim StartDate = New Date(aYear, aMonth, 1)
+        'Dim EndDate = StartDate.AddMonths(1).AddDays(-1)
+        'If TransDate < StartDate Then
+        '    TransDate = StartDate
+        'End If
+        'If TransDate > EndDate Then
+        '    TransDate = EndDate
+        'End If
         Dim insert As New GLTran
         insert.Acct = AccountCode
         insert.AppliedDate = BlankDate

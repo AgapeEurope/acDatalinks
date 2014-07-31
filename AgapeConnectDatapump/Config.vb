@@ -371,6 +371,11 @@ Public Class Config
                 insert.Error = False
                 insert.dsConnectionString = ""
                 insert.solConnectionString = insert.dsConnectionString
+                insert.AccountCodeCount = 0
+                insert.LastSync = New Date(2001, 1, 1)
+                insert.ErrorMessage = ""
+                insert.CostCenterCount = 0
+
                 insert.Name = nd.DataLinkName
                 d.Datalinks.InsertOnSubmit(insert)
                 d.SubmitChanges()

@@ -90,6 +90,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -190,6 +193,7 @@
       <LastGenOutput>ACListener.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="My Project\app.manifest" />
     <None Include="Web References\dynamicAgapeConnect\DatatSync.wsdl" />
     <None Include="Web References\dynamicAgapeConnect\DownloadResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>

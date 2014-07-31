@@ -16,6 +16,7 @@ Public Class ProjectInstaller
 
     Public Sub New()
         MyBase.New()
+     
 
         'This call is required by the Component Designer.
         InitializeComponent()
@@ -40,15 +41,18 @@ Public Class ProjectInstaller
         'Add initialization code after the call to InitializeComponent
 
     End Sub
-    
 
-    Public Overrides Sub Commit(savedState As System.Collections.IDictionary)
+
+
+
+
+    Public Overrides Sub Commit(ByVal savedState As System.Collections.IDictionary)
         MyBase.Commit(savedState)
 
         Try
             Dim sc As New ServiceController()
             sc.ServiceName = ServiceInstaller1.ServiceName
-           
+
             If sc.Status = ServiceControllerStatus.Stopped Then
                 sc.Start()
             End If
@@ -63,7 +67,7 @@ Public Class ProjectInstaller
 
 
 
-    Private Sub ServiceInstaller1_Committed(sender As System.Object, e As System.Configuration.Install.InstallEventArgs) Handles ServiceInstaller1.Committed
+    Private Sub ServiceInstaller1_Committed(ByVal sender As System.Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles ServiceInstaller1.Committed
         Dim sc As New ServiceController()
         sc.ServiceName = ServiceInstaller1.ServiceName
 
@@ -82,43 +86,50 @@ Public Class ProjectInstaller
     End Sub
 
 
-   
-   
-    
-    'Private Sub ServiceInstaller1_BeforeInstall(sender As System.Object, e As System.Configuration.Install.InstallEventArgs) Handles ServiceProcessInstaller1.BeforeInstall
 
 
 
-    '    Dim sa As New ServiceAccount
-    '    sa.ddlType.SelectedIndex = 0
-    '    sa.tbDomain.Text = My.Computer.Name
+    Private Sub ServiceInstaller1_BeforeInstall(ByVal sender As System.Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles ServiceProcessInstaller1.BeforeInstall
 
 
-    '    Dim rslt = sa.ShowDialog()
-
-    '    If rslt = DialogResult.OK Then
-    '        Select Case sa.ddlType.SelectedIndex
-    '            Case 0
-    '                ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.User
-    '                ServiceProcessInstaller1.Username = sa.tbDomain.Text & "\" & sa.tbUsername.Text
-    '                ServiceProcessInstaller1.Password = sa.tbPassword.Text
-    '            Case 1
-    '                ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.LocalService
-    '            Case 2
-    '                ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.LocalSystem
-    '            Case 3
-    '                ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.NetworkService
-
-    '        End Select
+        Try
+            Dim sc As New ServiceController(ServiceInstaller1.ServiceName)
 
 
+            If sc.Status = ServiceControllerStatus.Running Then
+                sc.Stop()
+                sc.WaitForStatus(ServiceControllerStatus.Stopped, System.TimeSpan.FromSeconds(30))
+
+            End If
+           
 
 
-    '    Else
-    '        Error 18
-    '    End If
+        Catch ex As Exception
 
 
+        End Try
 
-    'End Sub
+    End Sub
+
+    Private Sub ProjectInstaller_BeforeUninstall(ByVal sender As Object, ByVal e As System.Configuration.Install.InstallEventArgs) Handles Me.BeforeUninstall
+        Try
+            Dim sc As New ServiceController(ServiceInstaller1.ServiceName)
+
+
+            If sc.Status = ServiceControllerStatus.Running Then
+                sc.Stop()
+                sc.WaitForStatus(ServiceControllerStatus.Stopped, System.TimeSpan.FromSeconds(30))
+
+            End If
+            Dim sio As New ServiceInstaller()
+            sio.Context = Context
+            sio.ServiceName = "ACDatalinks"
+            sio.Uninstall(Nothing)
+
+
+        Catch ex As Exception
+
+
+        End Try
+    End Sub
 End Class

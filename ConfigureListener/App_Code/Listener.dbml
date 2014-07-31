@@ -18,30 +18,6 @@
       <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Datalinks" Member="Datalinks">
-    <Type Name="Datalink">
-      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="dsConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="solConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="webURL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="webPassword" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="AdvanceSuffix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AdvancePrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CurrencySymbol" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="LastSync" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Error" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CostCenterCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="AccountCodeCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="tntWebPortal" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Spare1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Spare2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Spare3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.WebUserFinancialCategories" Member="WebUserFinancialCategories">
     <Type Name="WebUserFinancialCategory">
       <Column Name="FinCatId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -75,6 +51,31 @@
       <Column Name="Spare3" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Spare4" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Spare5" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Datalinks" Member="Datalinks">
+    <Type Name="Datalink">
+      <Column Name="DatalinkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="dsConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="solConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="webURL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="webPassword" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AdvanceSuffix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AdvancePrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CurrencySymbol" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastSync" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Error" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CostCenterCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AccountCodeCount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="tntWebPortal" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="dwConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.VerifyNewColumns" Method="VerifyNewColumns">
